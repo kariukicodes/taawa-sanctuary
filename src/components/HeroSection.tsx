@@ -27,7 +27,7 @@ const HeroSection = () => {
             Find Peace, Strength, and Clarity
           </PillTag>
         </div>
-        <h1 className="scroll-reveal font-syne font-extrabold text-white leading-[1.08] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 5.4rem)" }}>
+        <h1 className="scroll-reveal font-syne font-extrabold text-white leading-[1.08] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 4.8rem)" }}>
           Mindful{" "}
           <em className="text-taawa-lime not-italic" style={{ fontStyle: "italic" }}>
             Healing
