@@ -59,12 +59,20 @@ const Navbar = () => {
           )}
         </div>
 
-        <button
-          onClick={() => handleAnchorClick("#contact")}
-          className="hidden md:inline-flex bg-taawa-green text-white font-instrument font-medium text-[0.88rem] rounded-pill px-6 py-2.5 border border-taawa-green/30 hover:-translate-y-0.5 transition-transform duration-300 cursor-pointer"
-        >
-          Contact Us
-        </button>
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={() => handleAnchorClick("#contact")}
+            className="font-instrument font-medium text-[0.88rem] rounded-pill px-5 py-2.5 border border-taawa-green/20 text-taawa-green hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+          >
+            Contact Us
+          </button>
+          <Link
+            to="/book-session"
+            className="bg-taawa-lime text-taawa-green font-instrument font-semibold text-[0.88rem] rounded-pill px-6 py-2.5 hover:-translate-y-0.5 transition-transform duration-300 no-underline"
+          >
+            Book Session →
+          </Link>
+        </div>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -105,6 +113,13 @@ const Navbar = () => {
           >
             Contact Us
           </button>
+          <Link
+            to="/book-session"
+            className="bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-6 py-2.5 text-center no-underline"
+            onClick={() => setMobileOpen(false)}
+          >
+            Book Session →
+          </Link>
         </div>
       )}
     </nav>
