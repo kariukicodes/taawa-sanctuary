@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-taawa-bg/95" : "bg-taawa-bg/[0.93]"
+        scrolled ? "bg-taawa-bg/95" : "bg-taawa-bg/[0.85]"
       } backdrop-blur-lg border-b border-taawa-green/[0.12]`}
     >
       <div className="flex items-center justify-between px-[5%] py-4">
@@ -36,7 +36,7 @@ const Navbar = () => {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex bg-taawa-green text-white font-instrument font-medium text-[0.88rem] rounded-pill px-6 py-2.5 hover:-translate-y-0.5 transition-transform duration-300"
+          className="hidden md:inline-flex bg-taawa-green text-white font-instrument font-medium text-[0.88rem] rounded-pill px-6 py-2.5 border border-taawa-green/30 hover:-translate-y-0.5 transition-transform duration-300"
         >
           Contact Us
         </a>

@@ -18,7 +18,7 @@ const HeroSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(45,61,30,0.88) 0%, rgba(45,61,30,0.45) 50%, rgba(45,61,30,0.10) 100%)",
+          "linear-gradient(to top, rgba(45,61,30,0.88) 0%, rgba(45,61,30,0.45) 50%, rgba(45,61,30,0.08) 100%)",
         }}
       />
       <div className="relative z-10 px-[5%] pb-20 max-w-3xl">
@@ -27,7 +27,7 @@ const HeroSection = () => {
             Find Peace, Strength, and Clarity
           </PillTag>
         </div>
-        <h1 className="scroll-reveal font-syne font-extrabold text-white leading-[1.08] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 5.4rem)" }}>
+        <h1 className="scroll-reveal font-syne font-extrabold text-white leading-[1.08] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 4.8rem)" }}>
           Mindful{" "}
           <em className="text-taawa-lime not-italic" style={{ fontStyle: "italic" }}>
             Healing
@@ -39,7 +39,7 @@ const HeroSection = () => {
         </p>
         <a
           href="#contact"
-          className="scroll-reveal inline-flex bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-7 py-[0.9rem] hover:-translate-y-0.5 transition-transform duration-300 text-[0.95rem]"
+          className="scroll-reveal inline-flex bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-[1.8rem] py-[0.85rem] hover:-translate-y-0.5 transition-transform duration-300 text-[0.95rem]"
         >
           Start Your Journey →
         </a>
