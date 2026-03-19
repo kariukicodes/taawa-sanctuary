@@ -65,16 +65,27 @@ const Navbar = () => {
 
       {mobileOpen && (
         <div className="md:hidden px-[5%] pb-4 flex flex-col gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="font-instrument text-taawa-muted py-2"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link === "Blogs" ? (
+              <Link
+                key={link}
+                to="/blog"
+                className="font-instrument text-taawa-muted py-2 no-underline"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link}
+              </Link>
+            ) : (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
+                className="font-instrument text-taawa-muted py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link}
+              </a>
+            )
+          )}
           <a
             href="#contact"
             className="bg-taawa-green text-white font-instrument rounded-pill px-6 py-2.5 text-center mt-2"
