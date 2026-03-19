@@ -24,15 +24,25 @@ const Navbar = () => {
         <Logo />
 
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent"
-            >
-              {link}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link === "Blogs" ? (
+              <Link
+                key={link}
+                to="/blog"
+                className="font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent no-underline"
+              >
+                {link}
+              </Link>
+            ) : (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
+                className="font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent"
+              >
+                {link}
+              </a>
+            )
+          )}
         </div>
 
         <a
