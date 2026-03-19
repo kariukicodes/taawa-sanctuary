@@ -113,6 +113,13 @@ const Navbar = () => {
           >
             Contact Us
           </button>
+          <Link
+            to="/book-session"
+            className="bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-6 py-2.5 text-center no-underline"
+            onClick={() => setMobileOpen(false)}
+          >
+            Book Session →
+          </Link>
         </div>
       )}
     </nav>
