@@ -15,7 +15,7 @@ const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} className="bg-taawa-bg3 py-28 px-[5%]">
+    <section ref={ref} id="faq" className="bg-taawa-bg3 py-28 px-[5%]">
       <div className="text-center mb-14">
         <div className="scroll-reveal flex justify-center mb-5"><PillTag>FAQ</PillTag></div>
         <h2 className="scroll-reveal font-syne font-bold text-taawa-text max-w-[680px] mx-auto leading-tight mb-5" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
