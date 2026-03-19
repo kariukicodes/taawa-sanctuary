@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        syne: ["Syne", "sans-serif"],
+        syne: ["Space Grotesk", "sans-serif"],
         instrument: ["Instrument Sans", "sans-serif"],
       },
       colors: {
