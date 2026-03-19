@@ -58,7 +58,7 @@ const BlogSection = () => {
       </div>
 
       <div className="scroll-reveal flex justify-center">
-        <a href="#blogs" className="bg-taawa-salmon text-white font-instrument font-medium rounded-pill px-7 py-[0.78rem] hover:-translate-y-0.5 transition-transform duration-300">
+        <a href="/blog" className="bg-taawa-salmon text-white font-instrument font-medium rounded-pill px-7 py-[0.78rem] hover:-translate-y-0.5 transition-transform duration-300">
           Explore More
         </a>
       </div>
