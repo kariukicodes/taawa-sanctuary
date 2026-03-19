@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Blog from "./pages/Blog.tsx";
-
+import BlogPost from "./pages/BlogPost.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
