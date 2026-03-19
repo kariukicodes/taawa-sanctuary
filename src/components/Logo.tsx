@@ -1,12 +1,8 @@
+import logoImg from "@/assets/taawa_logo.png";
+
 const Logo = () => (
-  <a href="#" className="flex items-center gap-2.5 no-underline">
-    <div
-      className="w-[30px] h-[30px] bg-taawa-lime"
-      style={{ borderRadius: "50% 50% 50% 0", transform: "rotate(-45deg)" }}
-    />
-    <span className="font-syne font-bold text-taawa-green text-[1.15rem]">
-      Taawa Counselling
-    </span>
+  <a href="#" className="flex items-center no-underline">
+    <img src={logoImg} alt="Tāawa Counselling" className="h-10 w-auto" />
   </a>
 );
 
