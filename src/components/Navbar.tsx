@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 
 const navLinks = ["About Us", "Services", "Programs", "Blogs"];
@@ -23,15 +24,25 @@ const Navbar = () => {
         <Logo />
 
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent"
-            >
-              {link}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link === "Blogs" ? (
+              <Link
+                key={link}
+                to="/blog"
+                className="font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent no-underline"
+              >
+                {link}
+              </Link>
+            ) : (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
+                className="font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent"
+              >
+                {link}
+              </a>
+            )
+          )}
         </div>
 
         <a
@@ -54,16 +65,27 @@ const Navbar = () => {
 
       {mobileOpen && (
         <div className="md:hidden px-[5%] pb-4 flex flex-col gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="font-instrument text-taawa-muted py-2"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link === "Blogs" ? (
+              <Link
+                key={link}
+                to="/blog"
+                className="font-instrument text-taawa-muted py-2 no-underline"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link}
+              </Link>
+            ) : (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
+                className="font-instrument text-taawa-muted py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link}
+              </a>
+            )
+          )}
           <a
             href="#contact"
             className="bg-taawa-green text-white font-instrument rounded-pill px-6 py-2.5 text-center mt-2"
