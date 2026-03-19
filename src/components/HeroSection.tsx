@@ -39,7 +39,7 @@ const HeroSection = () => {
         </p>
         <a
           href="#contact"
-          className="scroll-reveal inline-flex bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-7 py-[0.9rem] hover:-translate-y-0.5 transition-transform duration-300 text-[0.95rem]"
+          className="scroll-reveal inline-flex bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-[1.8rem] py-[0.85rem] hover:-translate-y-0.5 transition-transform duration-300 text-[0.95rem]"
         >
           Start Your Journey →
         </a>

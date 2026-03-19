@@ -36,7 +36,7 @@ const Navbar = () => {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex bg-taawa-green text-white font-instrument font-medium text-[0.88rem] rounded-pill px-6 py-2.5 hover:-translate-y-0.5 transition-transform duration-300"
+          className="hidden md:inline-flex bg-taawa-green text-white font-instrument font-medium text-[0.88rem] rounded-pill px-6 py-2.5 border border-taawa-green/30 hover:-translate-y-0.5 transition-transform duration-300"
         >
           Contact Us
         </a>
