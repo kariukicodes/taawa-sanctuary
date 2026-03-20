@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section ref={ref} className="bg-taawa-peach py-28 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg py-28 px-[5%]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 mb-14 max-w-6xl mx-auto">
         <div>
           <div className="scroll-reveal mb-5"><PillTag>Testimonials</PillTag></div>

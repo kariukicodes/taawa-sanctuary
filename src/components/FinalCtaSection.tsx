@@ -4,12 +4,12 @@ const FinalCtaSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="bg-taawa-bg3 py-16 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg2 py-16 px-[5%]">
       <div className="scroll-reveal bg-taawa-green rounded-[28px] py-20 px-[5%] text-center relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "radial-gradient(circle at 30% 20%, rgba(212,232,74,0.08) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(232,132,90,0.06) 0%, transparent 50%)",
+            background: "radial-gradient(circle at 30% 20%, rgba(58,175,169,0.16) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(43,122,120,0.14) 0%, transparent 50%)",
           }}
         />
         <div className="relative z-10">

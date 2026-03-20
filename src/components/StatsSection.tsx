@@ -13,7 +13,7 @@ const StatsSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="bg-taawa-bg3 py-24 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg py-24 px-[5%]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center max-w-6xl mx-auto">
         <div className="scroll-reveal-left relative h-[340px] mx-auto w-full max-w-[400px]">
           {stats.map((s, i) => (

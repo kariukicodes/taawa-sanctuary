@@ -23,7 +23,7 @@ const BlogSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} id="blogs" className="bg-taawa-peach py-28 px-[5%]">
+    <section ref={ref} id="blogs" className="bg-taawa-bg py-28 px-[5%]">
       <div className="text-center mb-14">
         <div className="scroll-reveal flex justify-center mb-5"><PillTag>Insights</PillTag></div>
         <h2 className="scroll-reveal font-syne font-bold text-taawa-text max-w-[680px] mx-auto leading-tight mb-5" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>

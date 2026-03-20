@@ -17,11 +17,11 @@ const OurStorySection = () => {
       {/* Decorative watermark circles */}
       <div
         className="absolute top-16 left-0 w-[220px] h-[220px] rounded-full border-[30px] opacity-[0.06] pointer-events-none"
-        style={{ borderColor: "#2d3d1e" }}
+        style={{ borderColor: "#17252a" }}
       />
       <div
         className="absolute top-0 right-0 w-[180px] h-[180px] rounded-full border-[25px] opacity-[0.06] pointer-events-none translate-x-1/3 -translate-y-1/4"
-        style={{ borderColor: "#2d3d1e" }}
+        style={{ borderColor: "#17252a" }}
       />
 
       <div className="text-center mb-14">

@@ -23,7 +23,7 @@ const ServicesSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} id="services" className="bg-taawa-peach py-28 px-[5%]">
+    <section ref={ref} id="services" className="bg-taawa-bg2 py-28 px-[5%]">
       <div className="text-center mb-14">
         <div className="scroll-reveal flex justify-center mb-5">
           <PillTag>What We Offer</PillTag>

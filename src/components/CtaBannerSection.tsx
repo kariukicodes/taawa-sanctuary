@@ -5,7 +5,7 @@ const CtaBannerSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="bg-taawa-peach py-20 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg2 py-20 px-[5%]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center max-w-6xl mx-auto">
         <div className="scroll-reveal-left">
           <PillTag className="mb-5">Start Your Journey</PillTag>

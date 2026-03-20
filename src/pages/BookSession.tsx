@@ -97,7 +97,7 @@ const BookSession = () => {
   };
 
   const inputClass =
-    "w-full bg-taawa-bg3 rounded-pill px-5 py-[0.9rem] font-instrument text-[0.88rem] text-taawa-text placeholder:text-taawa-muted/60 focus:outline-none focus:border-taawa-sage border border-transparent transition-colors";
+    "w-full bg-taawa-bg2 rounded-pill px-5 py-[0.9rem] font-instrument text-[0.88rem] text-taawa-text placeholder:text-taawa-muted/60 focus:outline-none focus:border-taawa-sage border border-transparent transition-colors";
 
   return (
     <>
@@ -143,7 +143,7 @@ const BookSession = () => {
                   className={`text-left rounded-card p-5 border-2 transition-all duration-300 hover:-translate-y-0.5 ${
                     selectedService === s.name
                       ? "border-taawa-lime bg-taawa-lime/10 shadow-md"
-                      : "border-transparent bg-white hover:shadow-md"
+                      : "border-taawa-green/15 bg-white shadow-sm hover:shadow-md"
                   }`}
                 >
                   <div className="text-2xl mb-3">{s.icon}</div>
@@ -157,13 +157,13 @@ const BookSession = () => {
           {/* Step 2: Date & Time */}
           {step === 2 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-card p-6">
+              <div className="bg-white rounded-card p-6 border border-taawa-green/15 shadow-sm">
                 <h3 className="font-syne font-bold text-taawa-text text-[0.95rem] mb-4">Select a Date</h3>
                 <Popover>
                   <PopoverTrigger asChild>
                     <button
                       className={cn(
-                        "w-full flex items-center gap-3 rounded-pill px-5 py-[0.9rem] font-instrument text-[0.88rem] border border-taawa-green/10 bg-taawa-bg3 text-left",
+                        "w-full flex items-center gap-3 rounded-pill px-5 py-[0.9rem] font-instrument text-[0.88rem] border border-taawa-green/10 bg-taawa-bg2 text-left",
                         !selectedDate && "text-taawa-muted/60"
                       )}
                     >
@@ -184,7 +184,7 @@ const BookSession = () => {
                 </Popover>
               </div>
 
-              <div className="bg-white rounded-card p-6">
+              <div className="bg-white rounded-card p-6 border border-taawa-green/15 shadow-sm">
                 <h3 className="font-syne font-bold text-taawa-text text-[0.95rem] mb-4">Select a Time</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {timeSlots.map((t) => (
@@ -194,7 +194,7 @@ const BookSession = () => {
                       className={`rounded-pill px-4 py-2.5 font-instrument text-[0.82rem] border transition-all duration-200 ${
                         selectedTime === t
                           ? "border-taawa-lime bg-taawa-lime/20 text-taawa-green font-medium"
-                          : "border-taawa-green/10 bg-taawa-bg3 text-taawa-muted hover:border-taawa-green/20"
+                          : "border-taawa-green/10 bg-taawa-bg2 text-taawa-muted hover:border-taawa-green/20"
                       }`}
                     >
                       {t}
@@ -207,7 +207,7 @@ const BookSession = () => {
 
           {/* Step 3: Contact Details */}
           {step === 3 && (
-            <div className="bg-white rounded-card p-8 max-w-lg mx-auto border border-taawa-sage/20">
+            <div className="bg-white rounded-card p-8 max-w-lg mx-auto border border-taawa-sage/25 shadow-md">
               <div className="space-y-4">
                 <div>
                   <input
@@ -242,11 +242,11 @@ const BookSession = () => {
                   value={form.message}
                   onChange={handleChange}
                   placeholder="Anything you'd like us to know? (optional)"
-                  className="w-full bg-taawa-bg3 rounded-[16px] px-5 py-[0.9rem] font-instrument text-[0.88rem] text-taawa-text placeholder:text-taawa-muted/60 focus:outline-none focus:border-taawa-sage border border-transparent transition-colors min-h-[100px] resize-none"
+                  className="w-full bg-taawa-bg2 rounded-[16px] px-5 py-[0.9rem] font-instrument text-[0.88rem] text-taawa-text placeholder:text-taawa-muted/60 focus:outline-none focus:border-taawa-sage border border-transparent transition-colors min-h-[100px] resize-none"
                 />
 
                 {/* Booking summary */}
-                <div className="bg-taawa-bg3 rounded-card p-5 mt-2">
+                <div className="bg-taawa-bg2 rounded-card p-5 mt-2 border border-taawa-green/15">
                   <h4 className="font-syne font-bold text-taawa-text text-[0.85rem] mb-3">Booking Summary</h4>
                   <div className="space-y-1.5 font-instrument text-[0.82rem]">
                     <p><span className="text-taawa-muted">Service:</span> <span className="text-taawa-text font-medium">{selectedService}</span></p>
@@ -260,7 +260,7 @@ const BookSession = () => {
 
           {/* Step 4: Confirmation */}
           {step === 4 && (
-            <div className="text-center bg-white rounded-card p-10 max-w-lg mx-auto border border-taawa-lime/30">
+            <div className="text-center bg-white rounded-card p-10 max-w-lg mx-auto border border-taawa-lime/30 shadow-md">
               <div className="w-16 h-16 bg-taawa-lime/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">✓</span>
               </div>

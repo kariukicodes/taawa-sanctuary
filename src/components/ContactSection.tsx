@@ -11,7 +11,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section ref={ref} id="contact" className="bg-taawa-bg3 py-28 px-[5%]">
+    <section ref={ref} id="contact" className="bg-taawa-bg py-28 px-[5%]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center max-w-6xl mx-auto">
         <div className="scroll-reveal-left">
           <PillTag className="mb-5">Contact Us</PillTag>

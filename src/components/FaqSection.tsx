@@ -15,7 +15,7 @@ const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} id="faq" className="bg-taawa-bg3 py-28 px-[5%]">
+    <section ref={ref} id="faq" className="bg-taawa-bg2 py-28 px-[5%]">
       <div className="text-center mb-14">
         <div className="scroll-reveal flex justify-center mb-5"><PillTag>FAQ</PillTag></div>
         <h2 className="scroll-reveal font-syne font-bold text-taawa-text max-w-[680px] mx-auto leading-tight mb-5" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
@@ -45,7 +45,7 @@ const FaqSection = () => {
                 <span
                   className={`flex-shrink-0 w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[1rem] font-instrument transition-all duration-300 ${
                     isOpen
-                      ? "bg-taawa-salmon border-taawa-salmon text-white rotate-45"
+                      ? "bg-taawa-green border-taawa-green text-white rotate-45"
                       : "border-taawa-salmon text-taawa-salmon"
                   }`}
                 >
