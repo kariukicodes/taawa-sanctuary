@@ -88,6 +88,26 @@ const BookSession = () => {
       toast.error("Something went wrong. Please try again.");
       return;
     }
+
+    // Send email notification via Resend
+    try {
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "onboarding@resend.dev",
+          to: "kariukifrancis743@gmail.com",
+          subject: `📅 New Booking — ${result.data.fullName}`,
+          html: `<div style="font-family:sans-serif"><h2>Session Booked</h2></div>`,
+        }),
+      });
+    } catch (emailError) {
+      console.error("Email notification failed:", emailError);
+    }
+
     setStep(4);
   };
 

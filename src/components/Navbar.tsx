@@ -72,6 +72,13 @@ const Navbar = () => {
           >
             Book Session →
           </Link>
+          <Link
+            to="/admin/login"
+            className="text-taawa-muted/40 hover:text-taawa-muted text-[0.75rem] font-instrument transition-colors"
+            title="Admin Portal"
+          >
+            🔐
+          </Link>
         </div>
 
         <button
@@ -119,6 +126,13 @@ const Navbar = () => {
             onClick={() => setMobileOpen(false)}
           >
             Book Session →
+          </Link>
+          <Link
+            to="/admin/login"
+            className="text-taawa-muted/50 font-instrument text-[0.82rem] text-center py-2"
+            onClick={() => setMobileOpen(false)}
+          >
+            🔐 Admin Access
           </Link>
         </div>
       )}

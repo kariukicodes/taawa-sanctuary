@@ -17,8 +17,16 @@ export default function ContactSection() {
 
     // Save to Supabase
     const { error: dbError } = await supabase
-      .from("contact_submissions")
-      .insert([form]);
+      .from("bookings")
+      .insert({
+        full_name: `${form.first_name} ${form.last_name}`,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+        service_type: "contact_inquiry",
+        session_date: new Date().toISOString().split('T')[0],
+        session_time: new Date().toLocaleTimeString(),
+      });
 
     if (dbError) {
       setError("Something went wrong. Please try again.");
@@ -36,7 +44,7 @@ export default function ContactSection() {
         },
         body: JSON.stringify({
           from: "onboarding@resend.dev",
-          to: "your@email.com", // 👈 replace with your email
+          to: "kariukifrancis743@gmail.com", // 👈 replace with your email
           subject: `📩 New Contact — ${form.first_name} ${form.last_name}`,
           html: `
             <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">

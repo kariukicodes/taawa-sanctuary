@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const footerLinks = ["Home", "About Us", "Services", "Programs", "Blogs", "Contact Us"];
 const socials = ["𝕏", "in", "f", "📷"];
@@ -42,6 +43,13 @@ const Footer = () => (
             </a>
           ))}
         </div>
+        <Link
+          to="/admin/login"
+          className="text-white/30 hover:text-taawa-lime/50 font-instrument text-[0.72rem] transition-colors duration-200"
+          title="Admin Portal"
+        >
+          🔐 Admin
+        </Link>
       </div>
     </div>
   </footer>
