@@ -12,7 +12,7 @@ const ProgramsSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} id="programs" className="bg-taawa-bg2 py-28 px-[5%] relative overflow-hidden">
+    <section ref={ref} id="programs" className="bg-taawa-bg2 py-16 px-[5%] relative overflow-hidden">
       <span className="absolute bottom-4 right-8 font-syne font-extrabold text-[12rem] text-taawa-green/[0.06] pointer-events-none select-none leading-none hidden md:block">
         Taawa
       </span>
@@ -20,7 +20,7 @@ const ProgramsSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 mb-14 max-w-6xl mx-auto relative z-10">
         <div>
           <div className="scroll-reveal mb-5"><PillTag>Our Programs</PillTag></div>
-          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}>
             Structured Programs Tailored To Your Growth Journey
           </h2>
         </div>
@@ -51,3 +51,4 @@ const ProgramsSection = () => {
 };
 
 export default ProgramsSection;
+

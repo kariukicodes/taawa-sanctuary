@@ -13,7 +13,7 @@ const OurStorySection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} id="about-us" className="relative bg-taawa-bg py-28 px-[5%] overflow-hidden">
+    <section ref={ref} id="about-us" className="relative bg-taawa-bg py-16 px-[5%] overflow-hidden">
       {/* Decorative watermark circles */}
       <div
         className="absolute top-16 left-0 w-[220px] h-[220px] rounded-full border-[30px] opacity-[0.06] pointer-events-none"
@@ -30,7 +30,7 @@ const OurStorySection = () => {
         </div>
         <h2
           className="scroll-reveal font-syne font-bold text-taawa-text max-w-[820px] mx-auto leading-tight mb-5"
-          style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
+          style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}
         >
           Empowering Minds With Compassionate, Evidence-Driven Wellness Support
         </h2>
@@ -39,19 +39,19 @@ const OurStorySection = () => {
         </p>
       </div>
 
-      <div className="flex justify-center items-start gap-5">
+      <div className="flex justify-center items-start gap-4">
         {photos.map((p, i) => (
           <div
             key={i}
             className="scroll-reveal relative flex-shrink-0 overflow-hidden"
             data-delay={`${i * 0.07}`}
-            style={{ marginTop: p.mt, borderRadius: 24, width: "min(220px, 18vw)" }}
+            style={{ marginTop: p.mt, borderRadius: 24, width: "min(180px, 16vw)" }}
           >
             <img
               src={p.src}
               alt="Wellness"
               className="w-full object-cover"
-              style={{ height: p.h, borderRadius: 24 }}
+              style={{ height: p.h * 0.8, borderRadius: 24 }}
               loading="lazy"
             />
             <div
@@ -66,3 +66,4 @@ const OurStorySection = () => {
 };
 
 export default OurStorySection;
+

@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   const linkClass =
-    "font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-pill hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent no-underline cursor-pointer";
+    "font-instrument text-taawa-muted text-[0.88rem] px-4 py-2 rounded-xl hover:border hover:border-taawa-green/[0.12] transition-all duration-200 border border-transparent no-underline cursor-pointer";
 
   return (
     <nav
@@ -62,13 +62,13 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => handleAnchorClick("#contact")}
-            className="font-instrument font-medium text-[0.88rem] rounded-pill px-5 py-2.5 border border-taawa-green/20 text-taawa-green hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+            className="font-instrument font-medium text-[0.88rem] rounded-xl px-6 py-2.5 border border-taawa-green/20 text-taawa-green hover:-translate-y-1 hover:shadow-md hover:shadow-taawa-green/10 active:scale-[0.98] transition-all duration-300 cursor-pointer bg-white/50 backdrop-blur-sm"
           >
             Contact Us
           </button>
           <Link
             to="/book-session"
-            className="bg-taawa-lime text-taawa-green font-instrument font-semibold text-[0.88rem] rounded-pill px-6 py-2.5 hover:-translate-y-0.5 transition-transform duration-300 no-underline"
+            className="bg-taawa-lime text-taawa-green font-instrument font-bold text-[0.9rem] rounded-xl px-7 py-2.5 hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300 no-underline text-center"
           >
             Book Session →
           </Link>
@@ -116,13 +116,13 @@ const Navbar = () => {
           )}
           <button
             onClick={() => handleAnchorClick("#contact")}
-            className="bg-taawa-green text-white font-instrument rounded-pill px-6 py-2.5 text-center mt-2"
+            className="font-instrument font-medium text-[0.88rem] rounded-xl px-6 py-2.5 border border-taawa-green/20 text-taawa-green hover:-translate-y-1 hover:shadow-md hover:shadow-taawa-green/10 active:scale-[0.98] transition-all duration-300 cursor-pointer bg-white/50 text-center mt-2"
           >
             Contact Us
           </button>
           <Link
             to="/book-session"
-            className="bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-6 py-2.5 text-center no-underline"
+            className="bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-6 py-2.5 text-center no-underline hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
             onClick={() => setMobileOpen(false)}
           >
             Book Session →
@@ -141,3 +141,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+

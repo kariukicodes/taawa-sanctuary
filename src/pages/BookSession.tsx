@@ -117,7 +117,7 @@ const BookSession = () => {
   };
 
   const inputClass =
-    "w-full bg-taawa-bg2 rounded-pill px-5 py-[0.9rem] font-instrument text-[0.88rem] text-taawa-text placeholder:text-taawa-muted/60 focus:outline-none focus:border-taawa-sage border border-transparent transition-colors";
+    "w-full bg-taawa-bg2 rounded-xl px-5 py-[0.9rem] font-instrument text-[0.88rem] text-taawa-text placeholder:text-taawa-muted/60 focus:outline-none focus:border-taawa-sage border border-transparent transition-colors";
 
   return (
     <>
@@ -183,7 +183,7 @@ const BookSession = () => {
                   <PopoverTrigger asChild>
                     <button
                       className={cn(
-                        "w-full flex items-center gap-3 rounded-pill px-5 py-[0.9rem] font-instrument text-[0.88rem] border border-taawa-green/10 bg-taawa-bg2 text-left",
+                        "w-full flex items-center gap-3 rounded-xl px-5 py-[0.9rem] font-instrument text-[0.88rem] border border-taawa-green/10 bg-taawa-bg2 text-left",
                         !selectedDate && "text-taawa-muted/60"
                       )}
                     >
@@ -211,7 +211,7 @@ const BookSession = () => {
                     <button
                       key={t}
                       onClick={() => setSelectedTime(t)}
-                      className={`rounded-pill px-4 py-2.5 font-instrument text-[0.82rem] border transition-all duration-200 ${
+                      className={`rounded-xl px-4 py-2.5 font-instrument text-[0.82rem] border transition-all duration-200 ${
                         selectedTime === t
                           ? "border-taawa-lime bg-taawa-lime/20 text-taawa-green font-medium"
                           : "border-taawa-green/10 bg-taawa-bg2 text-taawa-muted hover:border-taawa-green/20"
@@ -294,13 +294,13 @@ const BookSession = () => {
               <div className="flex gap-3 justify-center">
                 <button
                   onClick={() => navigate("/")}
-                  className="bg-taawa-green text-white font-instrument font-medium rounded-pill px-7 py-[0.78rem] hover:-translate-y-0.5 transition-transform duration-300"
+                  className="bg-taawa-green text-white font-instrument font-medium rounded-xl px-8 py-3 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-green/30 active:scale-[0.98] transition-all duration-300"
                 >
                   Back to Home
                 </button>
                 <button
                   onClick={() => { setStep(1); setSelectedService(""); setSelectedDate(undefined); setSelectedTime(""); setForm({ fullName: "", email: "", phone: "", message: "" }); }}
-                  className="bg-taawa-lime text-taawa-green font-instrument font-medium rounded-pill px-7 py-[0.78rem] hover:-translate-y-0.5 transition-transform duration-300"
+                  className="bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-8 py-3 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
                 >
                   Book Another
                 </button>
@@ -313,7 +313,7 @@ const BookSession = () => {
             <div className="flex justify-between mt-10 max-w-lg mx-auto">
               <button
                 onClick={() => setStep((s) => s - 1)}
-                className={`font-instrument text-taawa-muted text-[0.88rem] px-6 py-2.5 rounded-pill border border-taawa-green/10 hover:-translate-y-0.5 transition-all duration-300 ${
+                className={`font-instrument text-taawa-muted text-[0.88rem] px-6 py-2.5 rounded-xl border border-taawa-green/10 hover:-translate-y-0.5 transition-all duration-300 ${
                   step === 1 ? "invisible" : ""
                 }`}
               >
@@ -322,7 +322,7 @@ const BookSession = () => {
               <button
                 onClick={handleNext}
                 disabled={!canGoNext() || submitting}
-                className="bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-8 py-[0.85rem] hover:-translate-y-0.5 transition-transform duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-8 py-3 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {submitting ? "Booking..." : step === 3 ? "Confirm Booking" : "Continue →"}
               </button>
@@ -336,3 +336,6 @@ const BookSession = () => {
 };
 
 export default BookSession;
+
+
+

@@ -1,50 +1,52 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import PillTag from "./PillTag";
 
 export default function ContactSection() {
   const [form, setForm] = useState({
-    first_name: "", last_name: "",
-    email: "", phone: "", message: ""
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
-    // Save to Supabase
-    const { error: dbError } = await supabase
-      .from("bookings")
-      .insert({
-        full_name: `${form.first_name} ${form.last_name}`,
-        email: form.email,
-        phone: form.phone,
-        message: form.message,
-        service_type: "contact_inquiry",
-        session_date: new Date().toISOString().split('T')[0],
-        session_time: new Date().toLocaleTimeString(),
-      });
+    const { error: dbError } = await supabase.from("bookings").insert({
+      full_name: `${form.first_name} ${form.last_name}`,
+      email: form.email,
+      phone: form.phone,
+      message: form.message,
+      service_type: "contact_inquiry",
+      session_date: new Date().toISOString().split("T")[0],
+      session_time: new Date().toLocaleTimeString(),
+    });
 
     if (dbError) {
-      setError("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
       setLoading(false);
       return;
     }
 
-    // Send email notification via Resend
     try {
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
+          Authorization: `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
         },
         body: JSON.stringify({
           from: "onboarding@resend.dev",
-          to: "kariukifrancis743@gmail.com", // 👈 replace with your email
+          to: "kariukifrancis743@gmail.com",
           subject: `📩 New Contact — ${form.first_name} ${form.last_name}`,
           html: `
             <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
@@ -66,75 +68,112 @@ export default function ContactSection() {
           `,
         }),
       });
+      toast.success("Message sent! We'll be in touch within 24 hours.");
     } catch (emailError) {
       console.error("Email notification failed:", emailError);
+      toast.error("Failed to send email notification.");
+    } finally {
+      setLoading(false);
+      setForm({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
     }
-
-    setSuccess(true);
-    setLoading(false);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
-    <section id="contact" className="bg-taawa-bg3 py-28 px-[5%]">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-        {/* Left */}
-        <div>
-          <div className="pill mb-5">
-            <span className="pill-dot" />
-            Contact Us
+    <section id="contact" className="bg-taawa-lightest py-12 px-[5%]">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          {/* Left Content */}
+          <div>
+            <PillTag>Contact Us</PillTag>
+            <h2 className="font-syne font-bold text-3xl md:text-4xl text-foreground mt-6 mb-6">
+              Get Connected With Our Team for Personalized Wellness Support
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed">
+              We're here to help you take the next step in your wellness journey. Contact us for consultations, questions, or guidance. Our support team and professionals are available to ensure you feel heard, valued, and supported.
+            </p>
           </div>
-          <h2 className="font-syne font-bold text-display-md text-taawa-text mb-5">
-            Get Connected With Our Team for Personalized Wellness Support
-          </h2>
-          <p className="text-taawa-muted text-[0.92rem] leading-[1.85]">
-            We're here to help you take the next step in your wellness journey.
-            Contact us for consultations, questions, or guidance.
-          </p>
-        </div>
 
-        {/* Right — Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white rounded-card border border-taawa-lime/30 p-9 shadow-float"
-        >
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <input name="first_name" placeholder="First Name" required
-              onChange={handleChange}
-              className="f-input col-span-1" />
-            <input name="last_name" placeholder="Last Name" required
-              onChange={handleChange}
-              className="f-input col-span-1" />
-          </div>
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <input name="phone" placeholder="Mobile Number" type="tel"
-              onChange={handleChange}
-              className="f-input col-span-1" />
-            <input name="email" placeholder="Email Address" type="email" required
-              onChange={handleChange}
-              className="f-input col-span-1" />
-          </div>
-          <textarea name="message" placeholder="Message" required rows={4}
-            onChange={handleChange}
-            className="f-input w-full rounded-[16px] mb-4 resize-none" />
-
-          {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
-          {success ? (
-            <div className="bg-taawa-bg2 text-taawa-green rounded-full px-5 py-3 text-sm font-medium text-center">
-              ✓ Message sent! We'll be in touch within 24 hours.
+          {/* Right Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="border-2 border-taawa-accent rounded-3xl p-8 bg-white space-y-6"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                name="first_name"
+                placeholder="First Name"
+                required
+                onChange={handleChange}
+                value={form.first_name}
+                className="border-taawa-lightest"
+              />
+              <Input
+                name="last_name"
+                placeholder="Last Name"
+                required
+                onChange={handleChange}
+                value={form.last_name}
+                className="border-taawa-lightest"
+              />
             </div>
-          ) : (
-            <button type="submit" disabled={loading}
-              className="bg-taawa-salmon text-white font-medium py-3 px-6 rounded-full w-full hover:bg-taawa-salmon2 transition-all">
+
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                name="phone"
+                placeholder="Mobile Number"
+                type="tel"
+                onChange={handleChange}
+                value={form.phone}
+                className="border-taawa-lightest"
+              />
+              <Input
+                name="email"
+                placeholder="Email Address"
+                type="email"
+                required
+                onChange={handleChange}
+                value={form.email}
+                className="border-taawa-lightest"
+              />
+            </div>
+
+            <Textarea
+              name="message"
+              placeholder="Message"
+              required
+              rows={5}
+              onChange={handleChange}
+              value={form.message}
+              className="border-taawa-lightest resize-none"
+            />
+
+            <Button
+              type="submit"
+              disabled={loading}
+              className="bg-amber-100 text-amber-900 font-semibold rounded-xl px-8 py-3 hover:bg-amber-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-100/50 active:scale-[0.98] transition-all duration-300"
+              size={"lg"}
+            >
+              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {loading ? "Sending..." : "Send Message"}
-            </button>
-          )}
-        </form>
+            </Button>
+          </form>
+        </div>
       </div>
     </section>
   );
 }
+
+
+

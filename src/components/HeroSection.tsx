@@ -21,13 +21,13 @@ const HeroSection = () => {
           "linear-gradient(to top, rgba(23,37,42,0.88) 0%, rgba(23,37,42,0.45) 50%, rgba(23,37,42,0.08) 100%)",
         }}
       />
-      <div className="relative z-10 px-[5%] pb-20 max-w-3xl">
+      <div className="relative z-10 px-[5%] pb-12 max-w-3xl">
         <div className="scroll-reveal">
           <PillTag className="border-taawa-lime/30 text-white/80 bg-white/10 mb-6">
             Find Peace, Strength, and Clarity
           </PillTag>
         </div>
-        <h1 className="scroll-reveal font-syne font-extrabold text-white leading-[1.08] mb-6" style={{ fontSize: "clamp(2.8rem, 5vw, 4.8rem)" }}>
+        <h1 className="scroll-reveal font-syne font-extrabold text-white leading-[1.08] mb-6" style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)" }}>
           Mindful{" "}
           <em className="text-taawa-lime not-italic" style={{ fontStyle: "italic" }}>
             Healing
@@ -39,7 +39,7 @@ const HeroSection = () => {
         </p>
         <a
           href="#contact"
-          className="scroll-reveal inline-flex bg-taawa-lime text-taawa-green font-instrument font-semibold rounded-pill px-[1.8rem] py-[0.85rem] hover:-translate-y-0.5 transition-transform duration-300 text-[0.95rem]"
+          className="scroll-reveal inline-flex bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-8 py-3 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
         >
           Start Your Journey →
         </a>
@@ -49,3 +49,8 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+
+
+
+

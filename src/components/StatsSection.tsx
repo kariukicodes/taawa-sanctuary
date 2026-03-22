@@ -1,10 +1,10 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const stats = [
-  { num: "150+", label: "Expert Sessions Weekly", top: "0%", left: "5%" },
-  { num: "98%", label: "Client Satisfaction", top: "0%", left: "45%" },
-  { num: "12+", label: "Certified Professionals", top: "48%", left: "5%" },
-  { num: "16+", label: "Years of Experience", top: "48%", left: "45%" },
+  { num: "150+", label: "Expert Sessions Weekly" },
+  { num: "98%", label: "Client Satisfaction" },
+  { num: "12+", label: "Certified Professionals" },
+  { num: "16+", label: "Years of Experience" },
 ];
 
 const values = ["Compassion", "Integrity", "Mindful Growth"];
@@ -13,36 +13,54 @@ const StatsSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="bg-taawa-bg py-24 px-[5%]">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center max-w-6xl mx-auto">
-        <div className="scroll-reveal-left relative h-[340px] mx-auto w-full max-w-[400px]">
+    <section ref={ref} className="bg-[#f2f4f1] py-20 px-[5%]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center max-w-7xl mx-auto">
+        {/* Left Side: The 4-leaf clover intersecting circles */}
+        <div className="scroll-reveal-left relative h-[450px] w-full max-w-[450px] mx-auto hidden sm:block opacity-90">
+          {/* Top Left */}
+          <div className="absolute top-0 left-0 w-[240px] h-[240px] bg-taawa-lime border-[4px] border-[#f2f4f1] rounded-[120px] rounded-br-[40px] flex flex-col items-center justify-center text-center">
+            <span className="font-instrument font-medium text-white text-4xl mb-1">{stats[0].num}</span>
+            <span className="text-white/90 font-instrument text-[0.85rem] max-w-[120px] leading-snug">{stats[0].label}</span>
+          </div>
+          {/* Top Right */}
+          <div className="absolute top-0 right-0 w-[240px] h-[240px] bg-taawa-lime border-[4px] border-[#f2f4f1] rounded-[120px] rounded-bl-[40px] flex flex-col items-center justify-center text-center">
+            <span className="font-instrument font-medium text-white text-4xl mb-1">{stats[1].num}</span>
+            <span className="text-white/90 font-instrument text-[0.85rem] max-w-[120px] leading-snug">{stats[1].label}</span>
+          </div>
+          {/* Bottom Left */}
+          <div className="absolute bottom-0 left-0 w-[240px] h-[240px] bg-taawa-lime border-[4px] border-[#f2f4f1] rounded-[120px] rounded-tr-[40px] flex flex-col items-center justify-center text-center">
+            <span className="font-instrument font-medium text-white text-4xl mb-1">{stats[2].num}</span>
+            <span className="text-white/90 font-instrument text-[0.85rem] max-w-[120px] leading-snug">{stats[2].label}</span>
+          </div>
+          {/* Bottom Right */}
+          <div className="absolute bottom-0 right-0 w-[240px] h-[240px] bg-taawa-lime border-[4px] border-[#f2f4f1] rounded-[120px] rounded-tl-[40px] flex flex-col items-center justify-center text-center">
+            <span className="font-instrument font-medium text-white text-4xl mb-1">{stats[3].num}</span>
+            <span className="text-white/90 font-instrument text-[0.85rem] max-w-[120px] leading-snug">{stats[3].label}</span>
+          </div>
+        </div>
+        
+        {/* Mobile Fallback Grid (Since precise circles might break on tiny screens) */}
+        <div className="sm:hidden grid grid-cols-2 gap-4 opacity-90">
           {stats.map((s, i) => (
-            <div
-              key={i}
-              className="absolute w-[185px] h-[185px] rounded-full flex flex-col items-center justify-center text-center"
-              style={{
-                top: s.top,
-                left: s.left,
-                backgroundColor: `rgba(45,61,30,${[0.75, 0.60, 0.50, 0.65][i]})`,
-              }}
-            >
-              <span className="font-syne font-extrabold text-taawa-lime text-[2rem]">{s.num}</span>
-              <span className="text-white font-instrument text-[0.75rem] max-w-[100px] leading-tight mt-1">{s.label}</span>
+            <div key={i} className="aspect-square rounded-[40px] flex flex-col items-center justify-center text-center p-4 bg-taawa-lime border-[4px] border-[#f2f4f1] text-white">
+              <span className="font-instrument font-medium text-white text-3xl mb-1">{s.num}</span>
+              <span className="font-instrument text-[0.8rem] leading-tight text-white/90">{s.label}</span>
             </div>
           ))}
         </div>
 
-        <div className="scroll-reveal-right">
-          <blockquote className="font-syne font-medium text-taawa-text leading-[1.55] mb-8" style={{ fontSize: "clamp(1.1rem, 2vw, 1.45rem)" }}>
-            "Taawa is devoted to guiding people toward calmer, more fulfilling lives through compassionate support, expert care, and evidence-driven wellness practices."
+        {/* Right Side Typography & Badges */}
+        <div className="scroll-reveal-right lg:pl-10">
+          <blockquote className="font-instrument text-gray-800 leading-[1.4] mb-10 tracking-tight" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
+            "Taawa is devoted to guiding people toward calmer, more fulfilling lives. Our certified therapists provide, evidence-based care designed to help you grow."
           </blockquote>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-4">
             {values.map((v) => (
               <span
                 key={v}
-                className="inline-flex items-center gap-2 rounded-pill px-5 py-2 font-instrument font-medium text-[0.82rem] text-taawa-sage border border-taawa-green/[0.15] bg-white/60"
+                className="inline-flex items-center gap-3 rounded-full px-5 py-2 font-instrument font-medium text-[0.95rem] text-gray-800 border border-gray-200 bg-transparent"
               >
-                <span className="w-[6px] h-[6px] rounded-full bg-taawa-lime border border-taawa-green" />
+                <div className="w-[4px] h-[4px] rounded-full bg-gray-600" />
                 {v}
               </span>
             ))}
@@ -54,3 +72,4 @@ const StatsSection = () => {
 };
 
 export default StatsSection;
+

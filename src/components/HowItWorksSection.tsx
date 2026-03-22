@@ -26,10 +26,10 @@ const HowItWorksSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="bg-taawa-bg py-28 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg py-16 px-[5%]">
       <div className="text-center mb-16">
         <div className="scroll-reveal flex justify-center mb-5"><PillTag>How It Works</PillTag></div>
-        <h2 className="scroll-reveal font-syne font-bold text-taawa-text max-w-[680px] mx-auto leading-tight mb-5" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+        <h2 className="scroll-reveal font-syne font-bold text-taawa-text max-w-[680px] mx-auto leading-tight mb-5" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}>
           Your Path to Wellness in Four Simple Steps
         </h2>
         <p className="scroll-reveal font-instrument text-taawa-muted max-w-[560px] mx-auto text-[0.95rem] leading-relaxed">
@@ -46,7 +46,7 @@ const HowItWorksSection = () => {
 
         <div className="scroll-reveal flex justify-center">
           <img
-            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&q=80"
+            src="munenewahome.png"
             alt="Wellness professional"
             className="w-[300px] h-[400px] object-cover rounded-[28px] border-4 border-white shadow-xl"
             loading="lazy"
@@ -64,3 +64,4 @@ const HowItWorksSection = () => {
 };
 
 export default HowItWorksSection;
+

@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import BookSession from "./pages/BookSession.tsx";
+import Services from "./pages/Services.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/book-session" element={<BookSession />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

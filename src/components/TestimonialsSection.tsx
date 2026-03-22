@@ -49,11 +49,11 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section ref={ref} className="bg-taawa-bg py-28 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg py-16 px-[5%]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 mb-14 max-w-6xl mx-auto">
         <div>
           <div className="scroll-reveal mb-5"><PillTag>Testimonials</PillTag></div>
-          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}>
             What Our Clients Say About Their Experience
           </h2>
         </div>
@@ -109,3 +109,4 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
+
