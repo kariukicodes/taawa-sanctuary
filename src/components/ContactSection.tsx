@@ -162,7 +162,7 @@ export default function ContactSection() {
             <Button
               type="submit"
               disabled={loading}
-              className="bg-amber-100 text-amber-900 font-semibold rounded-xl px-8 py-3 hover:bg-amber-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-100/50 active:scale-[0.98] transition-all duration-300"
+              className="bg-taawa-salmon text-white font-medium py-3 px-6 rounded-full hover:bg-taawa-salmon2 transition-all inline-flex items-center gap-2 hover:-translate-y-0.5 h-auto"
               size={"lg"}
             >
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

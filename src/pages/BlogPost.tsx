@@ -3,13 +3,12 @@ import Footer from "@/components/Footer";
 import PillTag from "@/components/PillTag";
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
-import useHashnodePost from "@/hooks/useHashnodePost";
+import { useSubstackPost } from "@/hooks/useSubstackPost";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { post, loading, error } = useHashnodePost(
-    slug || "",
-    "taawa.hashnode.dev"
+  const { post, loading, error } = useSubstackPost(
+    slug || ""
   );
 
   useEffect(() => {
@@ -75,7 +74,7 @@ const BlogPost = () => {
           <div className="flex items-center gap-3 mb-5">
             <PillTag>Wellness</PillTag>
             <span className="font-instrument text-taawa-muted text-[0.8rem]">
-              {new Date(post.publishedAt).toLocaleDateString()}
+              {post.pubDate ? new Date(post.pubDate).toLocaleDateString() : ""}
             </span>
           </div>
 
@@ -86,15 +85,15 @@ const BlogPost = () => {
             {post.title}
           </h1>
 
-          <img
-            src={post.coverImage.url}
+          {/* <img
+            src={post.thumbnail}
             alt={post.title}
             className="w-full h-[360px] object-cover rounded-card mb-10"
-          />
+          /> */}
 
           <div
             className="prose lg:prose-xl max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content.html }}
+            dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }}
           />
         </div>
       </article>

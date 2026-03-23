@@ -1,20 +1,20 @@
 import { useSubstack } from "@/hooks/useSubstack";
 import { format } from "date-fns";
+import PillTag from "@/components/PillTag";
 
 export default function BlogSection() {
   const { posts, loading, error } = useSubstack();
 
   return (
-    <section id="blog" className="bg-taawa-peach py-28 px-[5%]">
+    <section id="blog" className="bg-white py-16 md:py-20 px-[5%]">
       {/* Header */}
       <div className="text-center mb-12">
-        <div className="pill mx-auto mb-5">
-          <span className="pill-dot" />
-          Insights
+        <div className="flex justify-center mb-5">
+          <PillTag>Insights</PillTag>
         </div>
         <h2
-          className="font-syne font-bold text-taawa-text"
-          style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)", letterSpacing: "-0.025em", lineHeight: "1.12" }}
+          className="font-syne font-bold text-taawa-text leading-tight"
+          style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}
         >
           Weekly Insights to Help You Strengthen<br/>
           Mindfulness and Emotional Health
@@ -27,8 +27,8 @@ export default function BlogSection() {
 
       {/* Loading skeleton */}
       {loading && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {[1, 2, 3].map((i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {[1, 2, 3, 4].map((i) => (
             <div key={i} className="bg-taawa-bg3 rounded-[20px] overflow-hidden">
               <div className="w-[calc(100%-2rem)] mx-4 mt-4 h-44 rounded-[14px] bg-taawa-bg2 animate-pulse" />
               <div className="p-5 space-y-3">
@@ -48,7 +48,7 @@ export default function BlogSection() {
           <p className="text-taawa-muted text-sm">{error}</p>
           <p className="text-taawa-muted text-xs mt-2">
             Check out our articles directly on{" "}
-            
+            <a
               href="https://taawacounselling.substack.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -62,13 +62,11 @@ export default function BlogSection() {
 
       {/* Posts */}
       {!loading && !error && posts.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {posts.slice(0, 3).map((post) => (
-            
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {posts.slice(0, 4).map((post) => (
+            <a
               key={post.link}
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/blog/${post.slug}`}
               className="bg-taawa-bg3 rounded-[20px] overflow-hidden hover:-translate-y-1 transition-all duration-300 hover:shadow-card2 block group"
             >
               {/* Thumbnail */}
@@ -97,7 +95,7 @@ export default function BlogSection() {
                   {post.excerpt}
                 </p>
                 <span className="text-taawa-sage text-xs font-medium mt-3 block">
-                  Read on Substack →
+                  Read Article →
                 </span>
               </div>
             </a>
@@ -111,7 +109,7 @@ export default function BlogSection() {
           <p className="text-taawa-muted text-sm">No articles published yet.</p>
           <p className="text-taawa-muted text-xs mt-2">
             Check back soon or visit{" "}
-            
+            <a
               href="https://taawacounselling.substack.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -125,10 +123,8 @@ export default function BlogSection() {
 
       {/* CTA */}
       <div className="text-center">
-        
-          href="https://taawacounselling.substack.com"
-          target="_blank"
-          rel="noopener noreferrer"
+        <a
+          href="/blog"
           className="bg-taawa-salmon text-white font-medium py-3 px-6 rounded-full hover:bg-taawa-salmon2 transition-all inline-flex items-center gap-2 hover:-translate-y-0.5"
         >
           View All Articles →
@@ -137,12 +133,3 @@ export default function BlogSection() {
     </section>
   );
 }
-```
-
----
-
-## **3. Add key to Vercel**
-
-In Vercel → Settings → Environment Variables add:
-```
-VITE_RSS2JSON_KEY = fai1bvyhceekkk9mwwpkakoafhls9cf89czkeqgg

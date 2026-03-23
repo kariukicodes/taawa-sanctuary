@@ -52,17 +52,18 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {allServices.map((s, i) => (
-            <div key={i} className="bg-white/60 border border-taawa-lime/20 rounded-[32px] p-6 flex flex-col hover:shadow-lg transition-all duration-300">
-              <div className="w-full h-[280px] rounded-[24px] overflow-hidden mb-6">
-                <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+            <div key={i} className="bg-white rounded-[32px] p-8 flex flex-col hover:shadow-card2 hover:-translate-y-1 transition-all duration-300 border border-taawa-lime/20 group">
+              <div className="w-full h-56 rounded-[24px] overflow-hidden mb-8 relative">
+                <div className="absolute inset-0 bg-taawa-green/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
-              <h3 className="font-syne font-bold text-gray-900 text-2xl mb-3">{s.title}</h3>
-              <p className="text-gray-600 mb-6 flex-grow">{s.fullDesc}</p>
-              <button className="self-start text-taawa-lime font-bold hover:text-taawa-sage transition-colors">
-                Book this Service →
-              </button>
+              <h3 className="font-syne font-bold text-taawa-text text-2xl mb-4 group-hover:text-taawa-sage transition-colors">{s.title}</h3>
+              <p className="text-taawa-muted mb-8 leading-relaxed text-sm flex-grow">{s.fullDesc}</p>
+              <a href="/book-session" className="inline-flex items-center gap-2 justify-center w-full bg-taawa-bg2 text-taawa-text font-medium py-3.5 px-6 rounded-full group-hover:bg-taawa-sage group-hover:text-white transition-all duration-300">
+                Book this Service <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
             </div>
           ))}
         </div>

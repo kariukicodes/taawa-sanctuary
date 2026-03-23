@@ -4,11 +4,11 @@ import PillTag from "@/components/PillTag";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import useHashnode from "@/hooks/useHashnode"; // Import the hook
+import { useSubstack } from "@/hooks/useSubstack";
 
 const Blog = () => {
-  const ref = useScrollReveal("multiple");
-  const { posts: blogPosts, loading, error } = useHashnode("taawa"); // Use the hook
+  const ref = useScrollReveal();
+  const { posts: blogPosts, loading, error } = useSubstack();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,43 +37,43 @@ const Blog = () => {
           </p>
         </div>
 
-        {loading && <p>Loading...</p>}
-        {error && <p>Error fetching posts: {error.message}</p>}
+        {loading && <p className="text-center text-taawa-muted">Loading...</p>}
+        {error && <p className="text-center text-taawa-muted">Error fetching posts: {error}</p>}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {blogPosts &&
             blogPosts.map((b, i) => (
-              <Link
-                to={`/blog/${b.slug}`}
+              <a
+                href={`/blog/${b.slug}`}
                 key={b.slug}
-                className="scroll-reveal bg-taawa-bg3 rounded-card overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300 group no-underline"
-                data-delay={`${i * 0.07}`}
+                className="bg-taawa-bg3 rounded-[20px] overflow-hidden hover:-translate-y-1 hover:shadow-card2 transition-all duration-300 group block border border-taawa-lime/10 animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-forwards"
+                style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="overflow-hidden">
                   <img
-                    src={b.coverImage}
+                    src={b.thumbnail || "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=80"}
                     alt={b.title}
-                    className="w-full h-[220px] object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="font-instrument text-taawa-muted text-[0.72rem]">
-                      {new Date(b.dateAdded).toLocaleDateString()}
+                      {new Date(b.pubDate).toLocaleDateString()}
                     </span>
-                    <span className="inline-block bg-taawa-lime/20 text-taawa-green font-instrument font-medium text-[0.7rem] rounded-pill px-3 py-0.5">
-                      Wellness
+                    <span className="inline-block bg-taawa-lime text-taawa-green font-instrument font-medium text-[0.7rem] rounded-full px-3 py-1">
+                      Insights
                     </span>
                   </div>
-                  <h3 className="font-syne font-bold text-taawa-text text-[1.05rem] leading-snug mb-2">
+                  <h3 className="font-syne font-bold text-taawa-text text-[1.1rem] leading-snug mb-2 group-hover:text-taawa-sage transition-colors">
                     {b.title}
                   </h3>
-                  <p className="font-instrument text-taawa-muted text-[0.85rem] leading-relaxed">
-                    {b.brief}
+                  <p className="font-instrument text-taawa-muted text-[0.85rem] leading-relaxed line-clamp-3">
+                    {b.excerpt}
                   </p>
                 </div>
-              </Link>
+              </a>
             ))}
         </div>
       </section>

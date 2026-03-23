@@ -7,6 +7,8 @@ export type SubstackPost = {
   excerpt: string;
   thumbnail: string;
   author: string;
+  content: string;
+  slug: string;
 };
 
 export function useSubstack() {
@@ -18,8 +20,7 @@ export function useSubstack() {
     async function fetchFeed() {
       try {
         const feedUrl = "https://taawacounselling.substack.com/feed";
-        const key = import.meta.env.VITE_RSS2JSON_KEY;
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}&api_key=${key}&count=6`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
 
         const res = await fetch(apiUrl);
         const data = await res.json();
@@ -36,6 +37,11 @@ export function useSubstack() {
             .trim() + "...",
           thumbnail: item.thumbnail || item.enclosure?.link || "",
           author: item.author || "Taawa Counselling",
+          content: item.content || item.description || "", // 👈 full HTML
+          slug: item.link.split("/").pop() || item.title   // 👈 generate slug
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, ""),
         }));
 
         setPosts(parsed);
