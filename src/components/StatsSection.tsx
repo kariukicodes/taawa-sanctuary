@@ -38,15 +38,18 @@ const StatsSection = () => {
             <span className="text-white/90 font-instrument text-[0.85rem] max-w-[120px] leading-snug">{stats[3].label}</span>
           </div>
         </div>
-        
-        {/* Mobile Fallback Grid (Since precise circles might break on tiny screens) */}
-        <div className="sm:hidden grid grid-cols-2 gap-4 opacity-90">
-          {stats.map((s, i) => (
-            <div key={i} className="aspect-square rounded-[40px] flex flex-col items-center justify-center text-center p-4 bg-taawa-lime border-[4px] border-[#f2f4f1] text-white">
-              <span className="font-instrument font-medium text-white text-3xl mb-1">{s.num}</span>
-              <span className="font-instrument text-[0.8rem] leading-tight text-white/90">{s.label}</span>
-            </div>
-          ))}
+
+        {/* Mobile Rotating Metric Strip */}
+        <div className="sm:hidden w-[100vw] relative left-[50%] -translate-x-1/2 overflow-hidden bg-taawa-lime py-6 my-10 border-y-4 border-[#f2f4f1]">
+          <div className="flex animate-marquee w-[200%]">
+            {/* Array doubled for seamless continuous scrolling */}
+            {[...stats, ...stats].map((s, i) => (
+              <div key={i} className="flex flex-col items-center justify-center text-center px-8 shrink-0 w-1/8 text-white">
+                <span className="font-instrument font-bold text-3xl mb-1">{s.num}</span>
+                <span className="font-instrument text-[0.8rem] whitespace-nowrap text-white/90 uppercase tracking-widest">{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Right Side Typography & Badges */}
