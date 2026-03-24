@@ -65,7 +65,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-[5%] bottom-8 md:bottom-20 flex flex-col items-center z-20  w-[85%] max-w-[220px]">
+      <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-[5%] bottom-8 md:bottom-20 hidden md:flex flex-col items-center z-20  w-[85%] max-w-[220px]">
         <div className="flex flex-col items-center justify-center w-full backdrop-blur-md bg-white/10 border border-white/20 p-4 sm:p-5 md:p-6 rounded-xl shadow-2xl">
           <span className="text-3xl sm:text-4xl md:text-5xl font-syne font-bold text-white mb-1">
             98%
