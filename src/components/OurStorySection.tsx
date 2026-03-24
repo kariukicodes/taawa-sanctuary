@@ -39,19 +39,19 @@ const OurStorySection = () => {
         </p>
       </div>
 
-      <div className="flex justify-center items-start gap-4">
+      <div className="flex justify-center items-start gap-5">
         {photos.map((p, i) => (
           <div
             key={i}
             className="scroll-reveal relative flex-shrink-0 overflow-hidden"
             data-delay={`${i * 0.07}`}
-            style={{ marginTop: p.mt, borderRadius: 24, width: "min(180px, 16vw)" }}
+            style={{ marginTop: p.mt, borderRadius: 24, width: "min(220px, 18vw)" }}
           >
             <img
               src={p.src}
               alt="Wellness"
               className="w-full object-cover"
-              style={{ height: p.h * 0.8, borderRadius: 24 }}
+              style={{ height: p.h, borderRadius: 24 }}
               loading="lazy"
             />
             <div

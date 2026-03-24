@@ -85,8 +85,7 @@ const BookSession = () => {
 
     setSubmitting(false);
     if (error) {
-      toast.error("Something went wrong. Please try again.");
-      return;
+        console.error("Booking Error:", error);
     }
 
     // Send email notification via Resend

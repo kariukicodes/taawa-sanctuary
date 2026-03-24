@@ -32,6 +32,7 @@ export default function ContactSection() {
     });
 
     if (dbError) {
+      console.error("Booking Error:", dbError);
       toast.error("Something went wrong. Please try again.");
       setLoading(false);
       return;
