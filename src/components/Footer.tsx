@@ -5,7 +5,7 @@ const footerLinks = ["Home", "About Us", "Services", "Programs", "Blogs", "Conta
 const socials = ["𝕏", "in", "f", "📷"];
 
 const Footer = () => (
-  <footer className="bg-taawa-green mx-6 rounded-t-card relative overflow-hidden">
+  <footer className="bg-taawa-green mx-3 md:mx-6 rounded-t-card relative overflow-hidden">
     <span className="absolute bottom-2 left-1/2 -translate-x-1/2 font-syne font-extrabold text-[13rem] text-taawa-lime/[0.08] pointer-events-none select-none leading-none whitespace-nowrap hidden md:block">
       Taawa
     </span>

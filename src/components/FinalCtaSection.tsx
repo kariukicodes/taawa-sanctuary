@@ -4,7 +4,7 @@ const FinalCtaSection = () => {
   const ref = useScrollReveal();
 
   return (
-    <section ref={ref} className="bg-taawa-bg2 py-28 px-[5%]">
+    <section ref={ref} className="bg-taawa-bg2 py-16 px-[5%] lg:py-20">
       <div className="scroll-reveal bg-taawa-green rounded-[28px] py-16 px-[5%] text-center relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"

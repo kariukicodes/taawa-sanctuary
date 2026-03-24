@@ -111,7 +111,7 @@ export default function ContactSection() {
             onSubmit={handleSubmit}
             className="border-2 border-taawa-accent rounded-3xl p-8 bg-white space-y-6"
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
                 name="first_name"
                 placeholder="First Name"
@@ -130,7 +130,7 @@ export default function ContactSection() {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
                 name="phone"
                 placeholder="Mobile Number"

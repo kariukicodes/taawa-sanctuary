@@ -1,19 +1,17 @@
-﻿import { Suspense, lazy } from "react";
+﻿import AdminLogin from "./pages/admin/Login.tsx";
+import AdminDashboard from "./pages/admin/Dashboard.tsx";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-
-const AdminLogin = lazy(() => import("./pages/admin/Login.tsx"));
-const AdminDashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
-const Index = lazy(() => import("./pages/Index.tsx"));
-const NotFound = lazy(() => import("./pages/NotFound.tsx"));
-const Blog = lazy(() => import("./pages/Blog.tsx"));
-const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
-const BookSession = lazy(() => import("./pages/BookSession.tsx"));
-const Services = lazy(() => import("./pages/Services.tsx"));
-
+import Index from "./pages/Index.tsx";
+import NotFound from "./pages/NotFound.tsx";
+import Blog from "./pages/Blog.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
+import BookSession from "./pages/BookSession.tsx";
+import Services from "./pages/Services.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -22,19 +20,17 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Suspense fallback={<div className="min-h-screen bg-[#17252A]"></div>}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/book-session" element={<BookSession />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/book-session" element={<BookSession />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

@@ -89,7 +89,7 @@ const TestimonialsSection = () => {
         {testimonials.map((t, i) => (
           <div
             key={i}
-            className="scroll-reveal bg-taawa-bg3 rounded-card p-8 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex-shrink-0 w-[320px] md:w-[calc(33.333%-0.7rem)] snap-start"
+            className="scroll-reveal bg-taawa-bg3 rounded-card p-8 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex-shrink-0 w-[85vw] sm:w-[320px] md:w-[calc(33.333%-0.7rem)] snap-start"
             data-delay={`${i * 0.07}`}
           >
             <img

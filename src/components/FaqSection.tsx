@@ -79,7 +79,7 @@ const FaqSection = () => {
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between px-8 py-6 text-left group"
+                  className="w-full flex items-center justify-between px-5 sm:px-8 py-5 sm:py-6 text-left group"
                 >
                   <span className={`font-instrument text-[1.1rem] pr-6 transition-colors duration-200 ${isOpen ? "text-taawa-text font-medium" : "text-taawa-text/70"}`}>
                     {faq.q}
@@ -93,7 +93,7 @@ const FaqSection = () => {
                   </span>
                 </button>
                 <div
-                  className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out px-8"
+                  className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out px-5 sm:px-8"
                   style={{ 
                     gridTemplateRows: isOpen ? "1fr" : "0fr",
                     opacity: isOpen ? 1 : 0,
