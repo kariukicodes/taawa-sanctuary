@@ -1,21 +1,19 @@
 import PillTag from "./PillTag";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { RightSideTestimonials } from "./RightSideTestimonials";
 import { Typewriter } from "./Typewriter";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
-  const ref = useScrollReveal();
-
   return (
     <section
-      ref={ref}
       className="relative min-h-[100dvh] md:h-[100dvh] flex items-end overflow-hidden pt-24"
     >
       <img
         src="/heroimage.png"
         alt="Serene natural landscape"
         className="absolute inset-0 w-full h-full object-cover object-top"
+        fetchPriority="high"
+        loading="eager"
       />
 
       <div
@@ -27,14 +25,14 @@ const HeroSection = () => {
       />
 
       <div className="relative z-10 px-5 sm:px-[5%] pb-40 sm:pb-48 md:pb-20 max-w-3xl w-full">
-        <div className="scroll-reveal">
+        <div className="">
           <PillTag className="bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6">
             Mental Wellness, Reimagined
           </PillTag>
         </div>
 
         <h1
-          className="scroll-reveal font-syne font-extrabold text-white leading-[0.98] sm:leading-[1.02] tracking-tight mb-5 sm:mb-6 max-w-[11ch] sm:max-w-none"
+          className=" font-syne font-extrabold text-white leading-[0.98] sm:leading-[1.02] tracking-tight mb-5 sm:mb-6 max-w-[11ch] sm:max-w-none"
           style={{ fontSize: "clamp(2.35rem, 8vw, 4.5rem)" }}
         >
           Find Your{" "}
@@ -46,11 +44,11 @@ const HeroSection = () => {
           Compassionate Mental Care.
         </h1>
 
-        <p className="scroll-reveal font-instrument font-light text-white/90 max-w-[34ch] sm:max-w-[440px] text-[0.98rem] md:text-lg leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
+        <p className=" font-instrument font-light text-white/90 max-w-[34ch] sm:max-w-[440px] text-[0.98rem] md:text-lg leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
           <Typewriter text="Confidential, professional support to help you heal, grow, and move forward with clarity and strength." />
         </p>
 
-        <div className="scroll-reveal flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto max-w-sm">
+        <div className=" flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto max-w-sm">
           <Link
             to="/book-session"
             className="inline-flex w-full sm:w-auto items-center justify-center bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-6 py-3.5 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
@@ -67,7 +65,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-[5%] bottom-8 md:bottom-20 flex flex-col items-center z-20 scroll-reveal w-[85%] max-w-[220px]">
+      <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-[5%] bottom-8 md:bottom-20 flex flex-col items-center z-20  w-[85%] max-w-[220px]">
         <div className="flex flex-col items-center justify-center w-full backdrop-blur-md bg-white/10 border border-white/20 p-4 sm:p-5 md:p-6 rounded-xl shadow-2xl">
           <span className="text-3xl sm:text-4xl md:text-5xl font-syne font-bold text-white mb-1">
             98%
