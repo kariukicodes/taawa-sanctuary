@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section
-      className="relative min-h-[100dvh] md:h-[100dvh] flex items-end overflow-hidden pt-24"
+      className="relative min-h-[100dvh] md:h-[100dvh] flex items-end overflow-hidden pt-24 bg-[#17252a]"
     >
       <img
         src="/heroimage.png"
         alt="Serene natural landscape"
-        className="absolute inset-0 w-full h-full object-cover object-top"
+        className="absolute inset-0 w-full h-full object-cover object-[center_top] md:object-top scale-[0.85] md:scale-100 opacity-90 md:opacity-100 transition-all duration-500 rounded-3xl md:rounded-none mt-12 md:mt-0"
         fetchPriority="high"
         loading="eager"
       />
@@ -24,7 +24,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 px-5 sm:px-[5%] pb-40 sm:pb-48 md:pb-20 max-w-3xl w-full">
+      <div className="relative z-10 px-6 sm:px-[5%] pb-20 sm:pb-48 md:pb-20 max-w-3xl w-full flex flex-col items-center sm:items-start text-center sm:text-left">
         <div className="">
           <PillTag className="bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6">
             Mental Wellness, Reimagined
@@ -32,7 +32,7 @@ const HeroSection = () => {
         </div>
 
         <h1
-          className=" font-syne font-extrabold text-white leading-[0.98] sm:leading-[1.02] tracking-tight mb-5 sm:mb-6 max-w-[11ch] sm:max-w-none"
+          className=" font-syne font-extrabold text-white leading-[0.98] sm:leading-[1.02] tracking-tight mb-5 sm:mb-6 max-w-[14ch] sm:max-w-none"
           style={{ fontSize: "clamp(2.35rem, 8vw, 4.5rem)" }}
         >
           Find Your{" "}
@@ -40,15 +40,14 @@ const HeroSection = () => {
             Light
           </span>{" "}
           Through
-          <br />
-          Compassionate Mental Care.
+          <br className="hidden sm:block" /> Compassionate Mental Care.
         </h1>
 
-        <p className=" font-instrument font-light text-white/90 max-w-[34ch] sm:max-w-[440px] text-[0.98rem] md:text-lg leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
+        <p className=" font-instrument font-light text-white/90 max-w-[34ch] sm:max-w-[440px] text-[0.98rem] md:text-lg leading-relaxed mb-6 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
           <Typewriter text="Confidential, professional support to help you heal, grow, and move forward with clarity and strength." />
         </p>
 
-        <div className=" flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto max-w-sm">
+        <div className=" flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto max-w-[280px] sm:max-w-sm mt-8 sm:mt-0 mx-auto sm:mx-0">
           <Link
             to="/book-session"
             className="inline-flex w-full sm:w-auto items-center justify-center bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-6 py-3.5 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
