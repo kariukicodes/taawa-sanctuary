@@ -12,10 +12,11 @@ const FinalCtaSection = () => {
             background: "radial-gradient(circle at 30% 20%, rgba(58,175,169,0.16) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(43,122,120,0.14) 0%, transparent 50%)",
           }}
         />
-        <div className="relative z-10">
-          <div
-            className="w-10 h-10 bg-taawa-lime mx-auto mb-8"
-            style={{ borderRadius: "50% 50% 50% 0", transform: "rotate(-45deg)" }}
+        <div className="relative z-10 flex flex-col items-center">
+          <img 
+            src="/taa.png" 
+            alt="Taawa leaf icon" 
+            className="w-24 h-24 object-contain mb-8"
           />
           <h2 className="font-syne font-extrabold text-white max-w-[700px] mx-auto leading-tight mb-8" style={{ fontSize: "clamp(1.4rem, 2vw, 2rem)" }}>
             Begin your personalized path to{" "}

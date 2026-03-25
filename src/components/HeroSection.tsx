@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section
+      id="hero"
       className="relative min-h-[100dvh] md:h-[100dvh] flex items-end overflow-hidden pt-24 bg-[#17252a]"
     >
       <img
