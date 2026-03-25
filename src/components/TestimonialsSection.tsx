@@ -86,23 +86,28 @@ const TestimonialsSection = () => {
         className="flex gap-[1.4rem] max-w-6xl mx-auto overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {testimonials.map((t, i) => (
-          <div
-            key={i}
-            className="scroll-reveal bg-taawa-bg3 rounded-card p-8 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex-shrink-0 w-[85vw] sm:w-[320px] md:w-[calc(33.333%-0.7rem)] snap-start"
-            data-delay={`${i * 0.07}`}
-          >
-            <img
-              src={t.avatar}
-              alt={t.name}
-              className="w-[54px] h-[54px] rounded-full border-[3px] border-white shadow-md object-cover mb-5"
-              loading="lazy"
-            />
-            <p className="font-syne font-semibold text-taawa-text text-[1.05rem] leading-snug mb-3">"{t.quote}"</p>
-            <p className="font-instrument text-taawa-muted text-[0.82rem] leading-relaxed mb-4">{t.body}</p>
-            <span className="font-syne font-semibold text-taawa-text text-[0.85rem]">{t.name}</span>
-          </div>
-        ))}
+        {testimonials.map((t, i) => {
+          const initials = t.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase();
+            
+          return (
+            <div
+              key={i}
+              className="scroll-reveal bg-taawa-bg3 rounded-card p-8 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex-shrink-0 w-[85vw] sm:w-[320px] md:w-[calc(33.333%-0.7rem)] snap-start"
+              data-delay={`${i * 0.07}`}
+            >
+              <div className="w-[54px] h-[54px] rounded-full border-[3px] border-white shadow-md mb-5 bg-taawa-text text-[#e0e5d6] flex items-center justify-center font-syne font-bold text-lg">
+                {initials}
+              </div>
+              <p className="font-syne font-semibold text-taawa-text text-[1.05rem] leading-snug mb-3">"{t.quote}"</p>
+              <p className="font-instrument text-taawa-muted text-[0.82rem] leading-relaxed mb-4">{t.body}</p>
+              <span className="font-syne font-semibold text-taawa-text text-[0.85rem]">{t.name}</span>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

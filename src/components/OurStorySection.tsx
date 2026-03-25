@@ -58,19 +58,6 @@ const OurStorySection = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            
-            {/* Floating Card snippet mimicking the one from your reference */}
-            <div className="font-instrument absolute -bottom-6 md:bottom-8 left-4 md:-left-8 bg-white p-5 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.08)] flex flex-col gap-1.5 z-10 min-w-[180px] border border-gray-100">
-              <span className="text-[#a0aab2] text-xs font-medium">Growth Rate</span>
-              <div className="flex items-baseline gap-1">
-                <span className="font-syne font-bold text-taawa-text text-[1.65rem] leading-none">98.5</span>
-                <span className="text-taawa-text text-xs font-bold">%</span>
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="w-2 h-2 rounded-full bg-[#618264]"></span>
-                <span className="text-[#618264] text-[0.7rem] font-medium uppercase tracking-wider">Optimal</span>
-              </div>
-            </div>
           </div>
         </div>
 

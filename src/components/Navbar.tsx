@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
+import { ContactModal } from "./ContactModal";
 
 const navLinks = ["About Us", "Services", "Programs", "Blogs"];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
@@ -69,7 +71,7 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-3">
           <button
-            onClick={() => handleAnchorClick("#contact")}
+            onClick={() => setContactModalOpen(true)}
             className={`font-instrument font-medium text-[0.88rem] rounded-xl px-6 py-2.5 transition-all duration-300 cursor-pointer backdrop-blur-sm border ${
               !scrolled && isHome
                 ? "text-white border-white/30 hover:bg-white/10 hover:border-white/50"
@@ -129,7 +131,10 @@ const Navbar = () => {
             )
           )}
           <button
-            onClick={() => handleAnchorClick("#contact")}
+            onClick={() => {
+              setMobileOpen(false);
+              setContactModalOpen(true);
+            }}
             className="font-instrument font-medium text-[0.88rem] rounded-xl px-6 py-2.5 border border-taawa-green/20 text-taawa-green hover:-translate-y-1 hover:shadow-md hover:shadow-taawa-green/10 active:scale-[0.98] transition-all duration-300 cursor-pointer bg-white/50 text-center mt-2"
           >
             Contact Us
@@ -150,6 +155,7 @@ const Navbar = () => {
           </Link>
         </div>
       )}
+      <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
     </nav>
   );
 };

@@ -231,17 +231,17 @@ export default function ServicesSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={() => navigate("/book-session")}
+                onClick={() => navigate("/services")}
                 className="font-semibold py-3 px-7 rounded-full text-sm transition-all hover:-translate-y-0.5 font-instrument"
                 style={{ background: cat.accent, color: cat.bg }}
               >
-                {cat.cta} →
+                Explore More →
               </button>
               <button
                 onClick={() => navigate("/book-session")}
                 className="font-medium py-3 px-7 rounded-full text-sm border border-white/25 text-white hover:bg-white/10 transition-all font-instrument"
               >
-                Free Consultation
+                Book Session
               </button>
             </div>
           </div>
@@ -263,16 +263,6 @@ export default function ServicesSection() {
             }}
           />
         ))}
-      </div>
-
-      {/* Explore More Button */}
-      <div className="flex justify-center mt-12">
-        <button
-          onClick={() => navigate("/services")}
-          className="font-instrument bg-taawa-text text-white hover:bg-taawa-green transition-colors px-8 py-3 rounded-full font-medium"
-        >
-          Explore More
-        </button>
       </div>
 
     </section>
