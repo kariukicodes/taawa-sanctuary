@@ -1,4 +1,4 @@
-import logoImg from "@/assets/taawa_logo.png";
+import logoImg from "@/assets/Taawaverticle.svg";
 
 const Logo = () => (
   <div className="flex items-center no-underline">

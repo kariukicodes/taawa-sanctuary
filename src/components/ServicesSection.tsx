@@ -126,7 +126,7 @@ export default function ServicesSection() {
       {/* Header */}
       <div className="text-center mb-10">
         <PillTag className="mx-auto mb-5">
-          What We Offer
+          Support That Matters
         </PillTag>
         <h2
           className="font-syne font-bold text-taawa-text"
@@ -136,7 +136,7 @@ export default function ServicesSection() {
             lineHeight: "1.12",
           }}
         >
-          The counselling service for<br />every moment
+          Find the Support That Fits Your Journey
         </h2>
       </div>
 
@@ -265,20 +265,15 @@ export default function ServicesSection() {
         ))}
       </div>
 
-      {/* Approach note */}
-      <p className="font-instrument text-center text-taawa-muted text-sm mt-8">
-        All sessions use an{" "}
-        <span className="text-taawa-text font-medium">
-          Eclectic & Integrative approach
-        </span>{" "}
-        — tailored specifically to you.{" "}
+      {/* Explore More Button */}
+      <div className="flex justify-center mt-12">
         <button
-          onClick={() => navigate("/book-session")}
-          className="font-instrument text-taawa-sage underline underline-offset-2 hover:text-taawa-green transition-colors"
+          onClick={() => navigate("/services")}
+          className="font-instrument bg-taawa-text text-white hover:bg-taawa-green transition-colors px-8 py-3 rounded-full font-medium"
         >
-          Book a free consultation →
+          Explore More
         </button>
-      </p>
+      </div>
 
     </section>
   );
