@@ -1,75 +1,212 @@
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useEffect } from "react";
-import PillTag from "@/components/PillTag";
+import ServiceModal from "@/components/ServiceModal";
+import { services, Service } from "@/data/servicesData";
 
-const allServices = [
-  {
-    title: "Mindfulness Coaching",
-    desc: "Gentle guidance to build daily mindfulness habits and improve emotional awareness effectively.",
-    img: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80",
-    fullDesc: "Our mindfulness coaching is designed to help you anchor yourself in the present moment. By learning specialized breathing techniques and awareness exercises, you can reduce anxiety and increase your daily peace. We work with you step-by-step to integrate these practices into your everyday routine so they become natural tools you can access whenever you feel overwhelmed."
-  },
-  {
-    title: "Stress Management",
-    desc: "Practical techniques to reduce tension, improve resilience, and restore mental calmness daily.",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80",
-    fullDesc: "Life's pressures can quickly build up, affecting physical and mental well-being. Our stress management programs focus on identifying personal triggers and building actionable strategies to navigate them. You'll learn cognitive reframing, boundary-setting, and practical release techniques to build long-term emotional resilience."
-  },
-  {
-    title: "Therapy Sessions",
-    desc: "Professional one-on-one support to navigate emotions, challenges, and personal mental struggles.",
-    img: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=600&q=80",
-    fullDesc: "Sometimes we need a private, safe space to untangle profound emotional experiences. Our therapy sessions pair you with certified professionals who listen, validate, and guide you without judgment. Whether you're navigating trauma, relationship issues, loss, or depression, we provide a customized therapeutic approach."
-  },
-  {
-    title: "Group Workshops",
-    desc: "Join our community discussions and collaborative emotional resilience building workshops.",
-    img: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&q=80",
-    fullDesc: "Healing doesn't happen in isolation. Our group workshops provide a supportive community environment where you can learn emotional resilience alongside peers. Topics include communication skills, self-compassion, anxiety navigation, and guided group meditations."
-  }
+const categories = [
+  { id: "all", label: "All Services", count: services.length },
+  { id: "core", label: "Core Support", count: services.filter(s => s.category === "core").length },
+  { id: "relationships", label: "Relationships", count: services.filter(s => s.category === "relationships").length },
+  { id: "growth", label: "Growth & Coaching", count: services.filter(s => s.category === "growth").length },
+  { id: "identity", label: "Identity & Inclusion", count: services.filter(s => s.category === "identity").length },
+  { id: "specialist", label: "Specialist Programs", count: services.filter(s => s.category === "specialist").length },
 ];
 
 export default function Services() {
+  const [searchParams] = useSearchParams();
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [search, setSearch] = useState("");
+
+  // Open service from URL param e.g. /services?open=trauma-healing
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const openId = searchParams.get("open");
+    if (openId) {
+      const found = services.find((s) => s.id === openId);
+      if (found) setSelectedService(found);
+    }
+  }, [searchParams]);
+
+  // Listen for related service clicks from modal
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const id = (e as CustomEvent).detail;
+      const found = services.find((s) => s.id === id);
+      if (found) setSelectedService(found);
+    };
+    window.addEventListener("open-service", handler);
+    return () => window.removeEventListener("open-service", handler);
   }, []);
 
+  const filtered = services.filter((s) => {
+    const matchCat = activeCategory === "all" || s.category === activeCategory;
+    const matchSearch =
+      search === "" ||
+      s.title.toLowerCase().includes(search.toLowerCase()) ||
+      s.description.toLowerCase().includes(search.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
   return (
-    <div className="min-h-screen bg-taawa-bg font-instrument selection:bg-taawa-lime selection:text-white pb-20">
+    <>
       <Navbar />
-      
-      <main className="pt-32 px-[5%] max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <PillTag>All Services</PillTag>
+
+      <main className="bg-taawa-bg min-h-screen">
+
+        {/* Hero */}
+        <div className="bg-taawa-green pt-36 pb-16 px-[5%] text-center">
+          <div
+            className="inline-flex items-center gap-2 mb-5 rounded-full px-4 py-1.5 text-xs font-medium"
+            style={{ background: "rgba(212,232,74,0.15)", border: "1px solid rgba(212,232,74,0.3)", color: "rgba(255,255,255,0.75)" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-taawa-lime" />
+            Eclectic & Integrative Approach
           </div>
-          <h1 className="font-syne font-bold text-taawa-text text-3xl md:text-4xl mb-6">
-            Explore Our Healing Programs
+          <h1
+            className="font-syne font-bold text-white mb-4"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.03em", lineHeight: "1.05" }}
+          >
+            Our Counselling Services
           </h1>
-          <p className="text-taawa-muted max-w-2xl mx-auto text-lg leading-relaxed">
-            Discover the full range of therapeutic services and coaching we offer to support your unique journey toward mental and emotional wellbeing.
+          <p className="text-white/60 text-sm max-w-lg mx-auto leading-relaxed mb-8">
+            Every service is tailored to you. Browse our full range of counselling
+            and coaching services — click any service to learn more.
           </p>
+
+          {/* Search */}
+          <div className="max-w-md mx-auto relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-taawa-muted text-sm">🔍</span>
+            <input
+              type="text"
+              placeholder="Search services..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-white border-0 rounded-full pl-10 pr-5 py-3 font-instrument text-sm text-taawa-text outline-none placeholder:text-taawa-muted/60"
+            />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {allServices.map((s, i) => (
-            <div key={i} className="bg-white rounded-[32px] p-8 flex flex-col hover:shadow-card2 hover:-translate-y-1 transition-all duration-300 border border-taawa-lime/20 group">
-              <div className="w-full h-56 rounded-[24px] overflow-hidden mb-8 relative">
-                <div className="absolute inset-0 bg-taawa-green/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <h3 className="font-syne font-bold text-taawa-text text-2xl mb-4 group-hover:text-taawa-sage transition-colors">{s.title}</h3>
-              <p className="text-taawa-muted mb-8 leading-relaxed text-sm flex-grow">{s.fullDesc}</p>
-              <a href="/book-session" className="inline-flex items-center gap-2 justify-center w-full bg-taawa-bg2 text-taawa-text font-medium py-3.5 px-6 rounded-full group-hover:bg-taawa-sage group-hover:text-white transition-all duration-300">
-                Book this Service <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </a>
+        <div className="px-[5%] py-12">
+
+          {/* Category filters */}
+          <div className="flex gap-2 flex-wrap mb-8">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all border ${
+                  activeCategory === cat.id
+                    ? "bg-taawa-green text-white border-taawa-green"
+                    : "bg-white text-taawa-muted border-taawa-lime/20 hover:border-taawa-lime"
+                }`}
+              >
+                {cat.label}
+                <span
+                  className={`text-xs px-1.5 py-0.5 rounded-full ${
+                    activeCategory === cat.id
+                      ? "bg-taawa-lime text-taawa-green"
+                      : "bg-taawa-bg3 text-taawa-muted"
+                  }`}
+                >
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Results count */}
+          <p className="text-taawa-muted text-xs uppercase tracking-widest mb-5">
+            {filtered.length} service{filtered.length !== 1 ? "s" : ""} found
+            {search && ` for "${search}"`}
+          </p>
+
+          {/* Services grid */}
+          {filtered.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filtered.map((service) => (
+                <button
+                  key={service.id}
+                  onClick={() => setSelectedService(service)}
+                  className="bg-white rounded-[20px] border border-taawa-lime/15 p-6 text-left hover:border-taawa-lime hover:shadow-card hover:-translate-y-1 transition-all duration-300 group"
+                >
+                  {/* Top row */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 rounded-[12px] bg-taawa-bg3 flex items-center justify-center text-2xl group-hover:bg-taawa-lime/20 transition-colors">
+                      {service.icon}
+                    </div>
+                    <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">
+                      {service.categoryLabel}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-syne font-bold text-taawa-text text-[0.95rem] mb-2 group-hover:text-taawa-sage transition-colors">
+                    {service.title}
+                  </h3>
+
+                  {/* Tagline */}
+                  <p className="text-taawa-muted text-xs leading-relaxed mb-4 line-clamp-2">
+                    {service.tagline}
+                  </p>
+
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-taawa-bg3">
+                    <span className="text-taawa-muted text-[10px]">
+                      {service.sessionInfo.split("·")[0].trim()}
+                    </span>
+                    <span className="text-taawa-sage text-xs font-medium group-hover:translate-x-1 transition-transform">
+                      Learn more →
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
-          ))}
+          ) : (
+            <div className="text-center py-20">
+              <p className="text-4xl mb-4">🔍</p>
+              <p className="font-syne font-bold text-taawa-text text-lg mb-2">No services found</p>
+              <p className="text-taawa-muted text-sm">
+                Try a different search term or{" "}
+                <button
+                  onClick={() => { setSearch(""); setActiveCategory("all"); }}
+                  className="text-taawa-sage underline"
+                >
+                  view all services
+                </button>
+              </p>
+            </div>
+          )}
+
+          {/* Bottom CTA */}
+          <div className="mt-16 bg-taawa-green rounded-[24px] p-10 text-center">
+            <h2 className="font-syne font-bold text-white text-2xl mb-3">
+              Not sure which service is right for you?
+            </h2>
+            <p className="text-white/60 text-sm mb-6 max-w-md mx-auto">
+              Book a free 15-minute consultation and we'll help you find the
+              best fit for your needs.
+            </p>
+            <a
+              href="/book-session"
+              className="bg-taawa-lime text-taawa-green font-semibold py-3 px-8 rounded-full hover:bg-taawa-lime2 transition-all text-sm inline-block hover:-translate-y-0.5"
+            >
+              Book a Free Consultation →
+            </a>
+          </div>
         </div>
       </main>
 
       <Footer />
-    </div>
+
+      {/* Modal */}
+      {selectedService && (
+        <ServiceModal
+          service={selectedService}
+          onClose={() => setSelectedService(null)}
+        />
+      )}
+    </>
   );
 }
