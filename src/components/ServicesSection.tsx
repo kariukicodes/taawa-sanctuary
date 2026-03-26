@@ -141,19 +141,19 @@ export default function ServicesSection() {
       </div>
 
       {/* Filter tabs */}
-      <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-2 flex-wrap justify-center mb-8 w-full max-w-[320px] mx-auto sm:max-w-none">
+      <div className="flex flex-row overflow-x-auto sm:overflow-x-visible gap-2.5 sm:gap-2 sm:flex-wrap justify-start sm:justify-center mb-8 w-full snap-x snap-mandatory pt-2 pb-4 sm:py-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {categories.map((c, i) => (
           <button
             key={c.id}
             onClick={() => setActive(i)}
-            className={`font-instrument flex items-center justify-center sm:inline-block px-5 py-3.5 sm:py-2.5 rounded-full text-[0.95rem] sm:text-sm font-medium transition-all border ${
+            className={`font-instrument flex-shrink-0 snap-start sm:snap-center flex items-center justify-center sm:inline-block px-5 py-2.5 rounded-full text-[0.95rem] sm:text-sm font-medium transition-all border ${
               active === i
                 ? "bg-taawa-text text-white border-taawa-text shadow-sm"
                 : "bg-white text-taawa-muted border-taawa-lime/20 hover:border-taawa-lime hover:text-taawa-text hover:bg-taawa-lime/5"
             }`}
           >
             {active === i && (
-              <span className="inline-block w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full bg-taawa-lime mr-2.5 sm:mr-2" />
+              <span className="inline-block w-2 h-2 rounded-full bg-taawa-lime mr-2" />
             )}
             {c.label}
           </button>
