@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PillTag from "./PillTag";
 import { 
@@ -112,13 +112,6 @@ export default function ServicesSection() {
   const [active, setActive] = useState(0);
   const navigate = useNavigate();
   const cat = categories[active];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((current) => (current + 1) % categories.length);
-    }, 20000); // 20 seconds
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="services" className="bg-taawa-bg py-16 px-[5%] lg:py-20">

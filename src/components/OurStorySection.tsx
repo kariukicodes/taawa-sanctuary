@@ -32,7 +32,7 @@ const OurStorySection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStatIndex((current) => (current + 1) % stats.length);
-    }, 3500); // Rotates every 3.5 seconds
+    }, 8000); // Rotates every 8 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -75,10 +75,10 @@ const OurStorySection = () => {
           {stats.map((s, i) => (
             <div
               key={i}
-              className={`absolute inset-0 p-6 flex flex-col justify-center transition-all duration-700 ease-in-out ${
+              className={`absolute inset-0 p-6 flex flex-col justify-center transition-opacity duration-1000 ease-in-out ${
                 i === activeStatIndex
-                  ? "opacity-100 translate-y-0 scale-100 z-10"
-                  : "opacity-0 -translate-y-8 scale-95 z-0"
+                  ? "opacity-100 z-10"
+                  : "opacity-0 z-0 pointer-events-none"
               }`}
             >
               <div className="flex items-center gap-4 mb-3">
