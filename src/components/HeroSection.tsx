@@ -12,18 +12,13 @@ const HeroSection = () => {
       <img
         src="/heroimage.png"
         alt="Serene natural landscape"
-        className="absolute inset-0 w-full h-full object-cover object-center md:object-top opacity-90 md:opacity-100 transition-all duration-500"
+        className="absolute inset-0 w-full h-full object-cover object-center md:object-top transition-all duration-500"
         fetchPriority="high"
         loading="eager"
       />
 
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(23,37,42,0.95) 0%, rgba(23,37,42,0.8) 40%, rgba(23,37,42,0.1) 100%)",
-        }}
-      />
+      {/* Gradient overlay to seamlessly blend the image into the site's background theme */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#17252a] via-[#17252a]/30 to-transparent pointer-events-none" />
 
       <div className="relative z-10 px-6 sm:px-[5%] pb-16 sm:pb-48 md:pb-20 max-w-3xl w-full flex flex-col items-start text-left mt-auto">
         <div className="mb-6">

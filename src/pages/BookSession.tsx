@@ -159,7 +159,7 @@ const BookSession = () => {
               {categoriesList.map((s) => (
                 <button
                   key={s.id}
-                  onClick={() => setSelectedCategory(s.id)}
+                  onClick={() => { setSelectedCategory(s.id); setStep(2); }}
                   className={`text-left rounded-card p-5 border-2 transition-all duration-300 hover:-translate-y-0.5 ${
                     selectedCategory === s.id
                       ? "border-taawa-lime bg-taawa-lime/10 shadow-md"
@@ -180,7 +180,7 @@ const BookSession = () => {
               {allServices.filter(s => s.category === selectedCategory).map((s) => (
                 <button
                   key={s.id}
-                  onClick={() => setSelectedService(s.title)}
+                  onClick={() => { setSelectedService(s.title); setStep(3); }}
                   className={`text-left rounded-card p-5 border-2 transition-all duration-300 hover:-translate-y-0.5 ${
                     selectedService === s.title
                       ? "border-taawa-lime bg-taawa-lime/10 shadow-md"
