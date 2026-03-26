@@ -91,12 +91,12 @@ export default function Services() {
         <div className="px-[5%] py-12">
 
           {/* Category filters */}
-          <div className="flex gap-2 flex-wrap mb-8">
+          <div className="flex flex-row overflow-x-auto sm:overflow-x-visible gap-2.5 sm:gap-2 sm:flex-wrap justify-start mb-8 w-full snap-x snap-mandatory pb-4 pt-2 sm:py-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all border ${
+                className={`flex items-center gap-2 flex-shrink-0 snap-start sm:snap-center px-5 py-2.5 rounded-full text-sm font-medium transition-all border ${
                   activeCategory === cat.id
                     ? "bg-taawa-green text-white border-taawa-green"
                     : "bg-white text-taawa-muted border-taawa-lime/20 hover:border-taawa-lime"
