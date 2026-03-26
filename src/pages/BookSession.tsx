@@ -11,15 +11,14 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { services as allServices } from "@/data/servicesData";
 
-const services = [
-  { name: "Mindfulness Coaching", icon: "🧘", desc: "Guided practices to cultivate present-moment awareness and inner calm." },
-  { name: "Stress Management", icon: "🌿", desc: "Build effective coping strategies for life's everyday pressures." },
-  { name: "Therapy Sessions", icon: "💬", desc: "One-on-one sessions with certified therapists tailored to you." },
-  { name: "Anxiety Relief Program", icon: "🌊", desc: "Evidence-based techniques to manage and reduce anxiety." },
-  { name: "Burnout Recovery Plan", icon: "🎯", desc: "Structured recovery from chronic exhaustion and overwhelm." },
-  { name: "Self-Esteem Builder", icon: "🌸", desc: "Rebuild confidence and a positive relationship with yourself." },
-  { name: "Emotional Resilience Track", icon: "⏳", desc: "Develop lasting emotional strength and adaptability." },
+const categoriesList = [
+  { id: "core", name: "Core Support", icon: "🧠", desc: "Individual counselling, trauma healing, and core emotional support." },
+  { id: "relationships", name: "Relationships", icon: "💑", desc: "Relationship counselling, dating support, and couples therapy." },
+  { id: "growth", name: "Growth & Coaching", icon: "🌱", desc: "Self-esteem, career transitions, and life coaching." },
+  { id: "identity", name: "Identity & Inclusion", icon: "🏳️‍🌈", desc: "LGBTQ+ affirmative counselling and identity support." },
+  { id: "specialist", name: "Specialist Programs", icon: "🎓", desc: "Student support, group therapy, and corporate wellness." }
 ];
 
 const timeSlots = [
@@ -38,6 +37,7 @@ const bookingSchema = z.object({
 const BookSession = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState("");
@@ -46,14 +46,15 @@ const BookSession = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const canGoNext = () => {
-    if (step === 1) return !!selectedService;
-    if (step === 2) return !!selectedDate && !!selectedTime;
-    if (step === 3) return !!form.fullName && !!form.email;
+    if (step === 1) return !!selectedCategory;
+    if (step === 2) return !!selectedService;
+    if (step === 3) return !!selectedDate && !!selectedTime;
+    if (step === 4) return !!form.fullName && !!form.email;
     return false;
   };
 
   const handleNext = () => {
-    if (step === 3) {
+    if (step === 4) {
       handleSubmit();
       return;
     }
@@ -107,7 +108,7 @@ const BookSession = () => {
       console.error("Email notification failed:", emailError);
     }
 
-    setStep(4);
+    setStep(5);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -129,19 +130,19 @@ const BookSession = () => {
               className="font-syne font-bold text-taawa-text leading-tight mb-4"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
             >
-              {step === 4 ? "Booking Confirmed!" : "Schedule Your Wellness Session"}
+              {step === 5 ? "Booking Confirmed!" : "Schedule Your Wellness Session"}
             </h1>
-            {step < 4 && (
+            {step < 5 && (
               <p className="font-instrument text-taawa-muted text-[0.95rem]">
-                Step {step} of 3 — {step === 1 ? "Choose a service" : step === 2 ? "Pick a date & time" : "Your details"}
+                Step {step} of 4 — {step === 1 ? "Choose a category" : step === 2 ? "Choose a service" : step === 3 ? "Pick a date & time" : "Your details"}
               </p>
             )}
           </div>
 
           {/* Progress bar */}
-          {step < 4 && (
+          {step < 5 && (
             <div className="flex gap-2 mb-10 max-w-md mx-auto">
-              {[1, 2, 3].map((s) => (
+              {[1, 2, 3, 4].map((s) => (
                 <div
                   key={s}
                   className={`h-1.5 rounded-full flex-1 transition-colors duration-300 ${
@@ -152,15 +153,15 @@ const BookSession = () => {
             </div>
           )}
 
-          {/* Step 1: Service Selection */}
+          {/* Step 1: Category Selection */}
           {step === 1 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {services.map((s) => (
+              {categoriesList.map((s) => (
                 <button
-                  key={s.name}
-                  onClick={() => setSelectedService(s.name)}
+                  key={s.id}
+                  onClick={() => setSelectedCategory(s.id)}
                   className={`text-left rounded-card p-5 border-2 transition-all duration-300 hover:-translate-y-0.5 ${
-                    selectedService === s.name
+                    selectedCategory === s.id
                       ? "border-taawa-lime bg-taawa-lime/10 shadow-md"
                       : "border-taawa-green/15 bg-white shadow-sm hover:shadow-md"
                   }`}
@@ -173,8 +174,29 @@ const BookSession = () => {
             </div>
           )}
 
-          {/* Step 2: Date & Time */}
+          {/* Step 2: Service Selection */}
           {step === 2 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {allServices.filter(s => s.category === selectedCategory).map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setSelectedService(s.title)}
+                  className={`text-left rounded-card p-5 border-2 transition-all duration-300 hover:-translate-y-0.5 ${
+                    selectedService === s.title
+                      ? "border-taawa-lime bg-taawa-lime/10 shadow-md"
+                      : "border-taawa-green/15 bg-white shadow-sm hover:shadow-md"
+                  }`}
+                >
+                  <div className="text-2xl mb-3">{s.icon}</div>
+                  <h3 className="font-syne font-bold text-taawa-text text-[0.95rem] mb-1">{s.title}</h3>
+                  <p className="font-instrument text-taawa-muted text-[0.82rem] leading-relaxed line-clamp-2">{s.tagline}</p>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Step 3: Date & Time */}
+          {step === 3 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white rounded-card p-6 border border-taawa-green/15 shadow-sm">
                 <h3 className="font-syne font-bold text-taawa-text text-[0.95rem] mb-4">Select a Date</h3>
@@ -224,8 +246,8 @@ const BookSession = () => {
             </div>
           )}
 
-          {/* Step 3: Contact Details */}
-          {step === 3 && (
+          {/* Step 4: Contact Details */}
+          {step === 4 && (
             <div className="bg-white rounded-card p-8 max-w-lg mx-auto border border-taawa-sage/25 shadow-md">
               <div className="space-y-4">
                 <div>
@@ -277,8 +299,8 @@ const BookSession = () => {
             </div>
           )}
 
-          {/* Step 4: Confirmation */}
-          {step === 4 && (
+          {/* Step 5: Confirmation */}
+          {step === 5 && (
             <div className="text-center bg-white rounded-card p-10 max-w-lg mx-auto border border-taawa-lime/30 shadow-md">
               <div className="w-16 h-16 bg-taawa-lime/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">✓</span>
@@ -308,7 +330,7 @@ const BookSession = () => {
           )}
 
           {/* Navigation buttons */}
-          {step < 4 && (
+          {step < 5 && (
             <div className="flex justify-between mt-10 max-w-lg mx-auto">
               <button
                 onClick={() => setStep((s) => s - 1)}
@@ -323,7 +345,7 @@ const BookSession = () => {
                 disabled={!canGoNext() || submitting}
                 className="bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-8 py-3 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                {submitting ? "Booking..." : step === 3 ? "Confirm Booking" : "Continue →"}
+                {submitting ? "Booking..." : step === 4 ? "Confirm Booking" : "Continue →"}
               </button>
             </div>
           )}
