@@ -134,7 +134,7 @@ export default function ServicesSection() {
       </div>
 
       {/* Filter tabs */}
-      <div className="flex flex-row overflow-x-auto sm:overflow-x-visible gap-2.5 sm:gap-2 sm:flex-wrap justify-start sm:justify-center mb-8 w-full snap-x snap-mandatory pt-2 pb-4 sm:py-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-row overflow-x-auto sm:overflow-x-visible gap-2.5 sm:gap-2 sm:flex-wrap justify-start sm:justify-center mb-4 sm:mb-8 w-full snap-x snap-mandatory pt-2 pb-2 sm:py-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {categories.map((c, i) => (
           <button
             key={c.id}
@@ -150,6 +150,20 @@ export default function ServicesSection() {
             )}
             {c.label}
           </button>
+        ))}
+      </div>
+
+      {/* Switch dots outline for Mobile UX */}
+      <div className="flex sm:hidden justify-center gap-1.5 mb-8">
+        {categories.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            aria-label={`Go to category ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              active === i ? "w-6 bg-taawa-lime" : "w-1.5 bg-taawa-green/20"
+            }`}
+          />
         ))}
       </div>
 

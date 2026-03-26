@@ -16,8 +16,7 @@ export default function BlogSection() {
           className="font-syne font-bold text-taawa-text leading-tight"
           style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}
         >
-          Weekly Insights to Help You Strengthen<br/>
-          Mindfulness and Emotional Health
+          Weekly Insights for Emotional Wellbeing
         </h2>
         <p className="text-taawa-muted text-sm mt-4 max-w-xl mx-auto leading-relaxed">
           Practical guidance on stress management, relationships, and mental
