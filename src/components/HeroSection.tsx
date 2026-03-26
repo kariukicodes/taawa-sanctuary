@@ -12,7 +12,7 @@ const HeroSection = () => {
       <img
         src="/heroimage.png"
         alt="Serene natural landscape"
-        className="absolute inset-0 w-full h-[65vh] sm:h-full object-cover sm:object-cover object-[center_20%] sm:object-top opacity-90 md:opacity-100 transition-all duration-500 rounded-b-[2.5rem] sm:rounded-none"
+        className="absolute inset-0 w-full h-full object-cover object-center md:object-top opacity-90 md:opacity-100 transition-all duration-500"
         fetchPriority="high"
         loading="eager"
       />
@@ -21,13 +21,13 @@ const HeroSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(23,37,42,0.98) 0%, rgba(23,37,42,0.85) 35%, rgba(23,37,42,0.2) 100%)",
+            "linear-gradient(to top, rgba(23,37,42,0.95) 0%, rgba(23,37,42,0.8) 40%, rgba(23,37,42,0.1) 100%)",
         }}
       />
 
-      <div className="relative z-10 px-6 sm:px-[5%] pb-16 sm:pb-48 md:pb-20 max-w-3xl w-full flex flex-col items-start text-left">
-        <div className="mt-auto pt-[40vh] sm:pt-0">
-          <PillTag className="bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6">
+      <div className="relative z-10 px-6 sm:px-[5%] pb-16 sm:pb-48 md:pb-20 max-w-3xl w-full flex flex-col items-start text-left mt-auto">
+        <div className="mb-6">
+          <PillTag className="bg-white/10 backdrop-blur-md border border-white/20 text-white">
             Mental Wellness, Reimagined
           </PillTag>
         </div>
@@ -44,11 +44,11 @@ const HeroSection = () => {
           <br className="hidden sm:block" /> Compassionate Mental Care.
         </h1>
 
-        <p className=" font-instrument font-light text-white/90 max-w-[280px] sm:max-w-[440px] text-[1.05rem] md:text-lg leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
+        <p className=" font-instrument font-light text-white/90 max-w-[320px] sm:max-w-[440px] text-[1.05rem] md:text-lg leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
           <Typewriter text="Confidential, professional support to help you heal, grow, and move forward with clarity and strength." />
         </p>
 
-        <div className=" flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5 w-full sm:w-auto max-w-[280px] sm:max-w-sm mt-2 sm:mt-0">
+        <div className=" flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5 w-full sm:w-auto max-w-[320px] sm:max-w-none">
           <Link
             to="/book-session"
             className="inline-flex w-full sm:w-auto items-center justify-center bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-6 py-3.5 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
