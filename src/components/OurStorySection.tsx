@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useState, useEffect } from "react";
 import PillTag from "./PillTag";
 
 const stats = [
@@ -26,6 +27,14 @@ const stats = [
 
 const OurStorySection = () => {
   const ref = useScrollReveal();
+  const [activeStatIndex, setActiveStatIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStatIndex((current) => (current + 1) % stats.length);
+    }, 3500); // Rotates every 3.5 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section ref={ref} id="about-us" className="bg-taawa-bg2 py-16 px-[5%] lg:py-20">
@@ -61,8 +70,39 @@ const OurStorySection = () => {
           </div>
         </div>
 
-        {/* Bottom Section: Glassmorphic Stats Grid */}
-        <div className="scroll-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 w-full">
+{/* Bottom Section: Rotating Stats Strip (Mobile & Tablet) */}
+        <div className="scroll-reveal lg:hidden relative w-full h-[180px] rounded-2xl bg-white/70 backdrop-blur-xl border border-taawa-green/30 shadow-[0_8px_30px_rgba(0,0,0,0.04)] overflow-hidden">
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 p-6 flex flex-col justify-center transition-all duration-700 ease-in-out ${
+                i === activeStatIndex
+                  ? "opacity-100 translate-y-0 scale-100 z-10"
+                  : "opacity-0 -translate-y-8 scale-95 z-0"
+              }`}
+            >
+              <div className="flex items-center gap-4 mb-3">
+                <span className="font-syne font-bold text-taawa-text text-4xl">{s.num}</span>
+                <span className="font-instrument font-semibold text-taawa-text text-[1.1rem] leading-tight">{s.label}</span>
+              </div>
+              <span className="font-instrument text-taawa-muted text-[0.95rem] leading-[1.5]">{s.desc}</span>
+            </div>
+          ))}
+          {/* Progress Indicators */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+            {stats.map((_, i) => (
+              <div
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  i === activeStatIndex ? "w-6 bg-taawa-lime" : "w-1.5 bg-taawa-green/20"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Section: Glassmorphic Stats Grid (Desktop) */}
+        <div className="scroll-reveal hidden lg:grid grid-cols-4 gap-5 w-full">
           {stats.map((s, i) => (
             <div 
               key={i} 
