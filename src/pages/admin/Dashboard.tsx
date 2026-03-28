@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import AdminLayout from "./AdminLayout";
 
 type Tab = "overview" | "bookings" | "contacts" | "subscribers";
 
@@ -49,44 +50,18 @@ export default function AdminDashboard() {
   };
 
   const tabs = [
-    { id: "overview" as Tab, label: "Overview", emoji: "📊" },
-    { id: "bookings" as Tab, label: "Bookings", emoji: "📅", count: bookings.length },
-    { id: "contacts" as Tab, label: "Contacts", emoji: "📩", count: contacts.length },
-    { id: "subscribers" as Tab, label: "Subscribers", emoji: "🌿", count: subscribers.length },
+    { id: "overview" as Tab, label: "Overview", emoji: "Ã°Å¸â€œÅ " },
+    { id: "bookings" as Tab, label: "Bookings", emoji: "Ã°Å¸â€œâ€¦", count: bookings.length },
+    { id: "contacts" as Tab, label: "Contacts", emoji: "Ã°Å¸â€œÂ©", count: contacts.length },
+    { id: "subscribers" as Tab, label: "Subscribers", emoji: "Ã°Å¸Å’Â¿", count: subscribers.length },
   ];
 
   return (
-    <div className="min-h-screen bg-taawa-bg">
-
-      {/* Top bar */}
-      <div className="bg-taawa-green px-8 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div
-            className="w-7 h-7 bg-taawa-lime flex-shrink-0"
-            style={{ borderRadius: "50% 50% 50% 0", transform: "rotate(-45deg)" }}
-          />
-          <div>
-            <span className="font-syne font-bold text-white text-lg">Taawa CRM</span>
-            <span className="text-taawa-lime/60 text-xs ml-2">Admin Portal</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <button
-            onClick={fetchAll}
-            className="text-taawa-lime/70 hover:text-taawa-lime text-sm transition-colors"
-          >
-            ↻ Refresh
-          </button>
-          <button
-            onClick={handleLogout}
-            className="bg-white/10 hover:bg-white/20 text-white text-sm px-4 py-1.5 rounded-full transition-all"
-          >
-            Sign Out
-          </button>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 py-8">
+    <AdminLayout
+      title="Dashboard"
+      description="Overview of bookings and admin activity."
+    >
+      <div className="max-w-7xl mx-auto">
 
         {/* Tabs */}
         <div className="flex gap-2 mb-8 flex-wrap">
@@ -117,11 +92,11 @@ export default function AdminDashboard() {
 
         {loading ? (
           <div className="flex items-center justify-center py-24">
-            <div className="text-taawa-muted text-sm">Loading data...</div>
+            <div className="text-taawa-muted text-sm">Loading data...</div>     
           </div>
         ) : (
           <>
-            {/* ── OVERVIEW ── */}
+            {/* Ã¢â€â‚¬Ã¢â€â‚¬ OVERVIEW Ã¢â€â‚¬Ã¢â€â‚¬ */}
             {tab === "overview" && (
               <div>
                 <h2 className="font-syne font-bold text-taawa-text text-2xl mb-6">
@@ -129,12 +104,12 @@ export default function AdminDashboard() {
                 </h2>
 
                 {/* Stats cards */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">   
                   {[
-                    { label: "Total Bookings", value: bookings.length, bg: "bg-taawa-bg2", emoji: "📅" },
-                    { label: "Pending Bookings", value: bookings.filter((b) => b.status === "pending").length, bg: "bg-yellow-50", emoji: "⏳" },
-                    { label: "Contact Messages", value: contacts.length, bg: "bg-taawa-peach", emoji: "📩" },
-                    { label: "Subscribers", value: subscribers.length, bg: "bg-taawa-bg3", emoji: "🌿" },
+                    { label: "Total Bookings", value: bookings.length, bg: "bg-taawa-bg2", emoji: "Ã°Å¸â€œâ€¦" },
+                    { label: "Pending Bookings", value: bookings.filter((b) => b.status === "pending").length, bg: "bg-yellow-50", emoji: "Ã¢Â³" },
+                    { label: "Contact Messages", value: contacts.length, bg: "bg-taawa-peach", emoji: "Ã°Å¸â€œÂ©" },
+                    { label: "Subscribers", value: subscribers.length, bg: "bg-taawa-bg3", emoji: "Ã°Å¸Å’Â¿" },
                   ].map((stat) => (
                     <div key={stat.label} className={`${stat.bg} rounded-[20px] p-6 border border-taawa-lime/15`}>
                       <div className="text-2xl mb-2">{stat.emoji}</div>
@@ -171,9 +146,9 @@ export default function AdminDashboard() {
                           <tr key={b.id} className="border-t border-taawa-bg3 hover:bg-taawa-bg transition-colors">
                             <td className="px-4 py-3 font-medium text-taawa-text">{b.full_name}</td>
                             <td className="px-4 py-3 text-taawa-muted">{b.email}</td>
-                            <td className="px-4 py-3 text-taawa-muted">{b.service_type || "—"}</td>
-                            <td className="px-4 py-3 text-taawa-muted">{b.session_date || "—"}</td>
-                            <td className="px-4 py-3 text-taawa-muted">{b.session_time || "—"}</td>
+                            <td className="px-4 py-3 text-taawa-muted">{b.service_type || "Ã¢â‚¬â€"}</td>
+                            <td className="px-4 py-3 text-taawa-muted">{b.session_date || "Ã¢â‚¬â€"}</td>
+                            <td className="px-4 py-3 text-taawa-muted">{b.session_time || "Ã¢â‚¬â€"}</td>
                             <td className="px-4 py-3">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${STATUS_COLORS[b.status] || STATUS_COLORS.pending}`}>
                                 {b.status}
@@ -185,9 +160,9 @@ export default function AdminDashboard() {
                                 onChange={(e) => updateBookingStatus(b.id, e.target.value)}
                                 className="text-xs border border-taawa-lime/30 rounded-lg px-2 py-1.5 bg-white text-taawa-text outline-none"
                               >
-                                <option value="pending">Pending</option>
-                                <option value="confirmed">Confirmed</option>
-                                <option value="cancelled">Cancelled</option>
+                                <option value="pending">Pending</option>        
+                                <option value="confirmed">Confirmed</option>    
+                                <option value="cancelled">Cancelled</option>    
                               </select>
                             </td>
                           </tr>
@@ -213,7 +188,7 @@ export default function AdminDashboard() {
                         href={`mailto:${c.email}`}
                         className="bg-taawa-green text-taawa-lime text-xs font-medium px-4 py-2 rounded-full hover:bg-taawa-sage transition-all whitespace-nowrap"
                       >
-                        Reply →
+                        Reply Ã¢â€ â€™
                       </a>
                     </div>
                   ))}
@@ -224,7 +199,7 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            {/* ── BOOKINGS ── */}
+            {/* Ã¢â€â‚¬Ã¢â€â‚¬ BOOKINGS Ã¢â€â‚¬Ã¢â€â‚¬ */}
             {tab === "bookings" && (
               <div>
                 <h2 className="font-syne font-bold text-taawa-text text-2xl mb-6">
@@ -241,11 +216,11 @@ export default function AdminDashboard() {
                               {b.status}
                             </span>
                           </div>
-                          <div className="text-taawa-muted text-sm">{b.email} {b.phone && `· ${b.phone}`}</div>
+                          <div className="text-taawa-muted text-sm">{b.email} {b.phone && `Ã‚Â· ${b.phone}`}</div>
                           <div className="flex gap-2 mt-3 flex-wrap">
-                            {b.service_type && <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">🧠 {b.service_type}</span>}
-                            {b.session_date && <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">📅 {b.session_date}</span>}
-                            {b.session_time && <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">⏰ {b.session_time}</span>}
+                            {b.service_type && <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">Ã°Å¸Â§Â  {b.service_type}</span>}     
+                            {b.session_date && <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">Ã°Å¸â€œâ€¦ {b.session_date}</span>}     
+                            {b.session_time && <span className="text-xs bg-taawa-bg3 text-taawa-muted px-3 py-1 rounded-full">Ã¢Â° {b.session_time}</span>}       
                           </div>
                           {b.message && (
                             <p className="text-taawa-text text-sm mt-3 leading-relaxed max-w-2xl">{b.message}</p>
@@ -253,7 +228,7 @@ export default function AdminDashboard() {
                         </div>
                         <div className="flex flex-col items-end gap-2">
                           <span className="text-xs text-taawa-muted">
-                            {new Date(b.created_at).toLocaleDateString()}
+                            {new Date(b.created_at).toLocaleDateString()}       
                           </span>
                           <select
                             value={b.status}
@@ -261,14 +236,14 @@ export default function AdminDashboard() {
                             className="text-sm border border-taawa-lime/30 rounded-xl px-3 py-2 bg-taawa-bg3 text-taawa-text outline-none"
                           >
                             <option value="pending">Pending</option>
-                            <option value="confirmed">Confirmed</option>
-                            <option value="cancelled">Cancelled</option>
+                            <option value="confirmed">Confirmed</option>        
+                            <option value="cancelled">Cancelled</option>        
                           </select>
                           <a
                             href={`mailto:${b.email}`}
                             className="bg-taawa-green text-taawa-lime text-xs font-medium px-4 py-2 rounded-full hover:bg-taawa-sage transition-all"
                           >
-                            Email Client →
+                            Email Client Ã¢â€ â€™
                           </a>
                         </div>
                       </div>
@@ -281,7 +256,7 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            {/* ── CONTACTS ── */}
+            {/* Ã¢â€â‚¬Ã¢â€â‚¬ CONTACTS Ã¢â€â‚¬Ã¢â€â‚¬ */}
             {tab === "contacts" && (
               <div>
                 <h2 className="font-syne font-bold text-taawa-text text-2xl mb-6">
@@ -296,7 +271,7 @@ export default function AdminDashboard() {
                             {c.first_name} {c.last_name}
                           </div>
                           <div className="text-taawa-muted text-sm">
-                            {c.email} {c.phone && `· ${c.phone}`}
+                            {c.email} {c.phone && `Ã‚Â· ${c.phone}`}
                           </div>
                           <p className="text-taawa-text text-sm mt-3 leading-relaxed max-w-2xl">
                             {c.message}
@@ -304,13 +279,13 @@ export default function AdminDashboard() {
                         </div>
                         <div className="flex flex-col items-end gap-2">
                           <span className="text-xs text-taawa-muted">
-                            {new Date(c.created_at).toLocaleDateString()}
+                            {new Date(c.created_at).toLocaleDateString()}       
                           </span>
                           <a
                             href={`mailto:${c.email}`}
                             className="bg-taawa-green text-taawa-lime text-xs font-medium px-4 py-2 rounded-full hover:bg-taawa-sage transition-all"
                           >
-                            Reply →
+                            Reply Ã¢â€ â€™
                           </a>
                         </div>
                       </div>
@@ -323,7 +298,7 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            {/* ── SUBSCRIBERS ── */}
+            {/* Ã¢â€â‚¬Ã¢â€â‚¬ SUBSCRIBERS Ã¢â€â‚¬Ã¢â€â‚¬ */}
             {tab === "subscribers" && (
               <div>
                 <h2 className="font-syne font-bold text-taawa-text text-2xl mb-6">
@@ -347,9 +322,9 @@ export default function AdminDashboard() {
                         {subscribers.map((s) => (
                           <tr key={s.id} className="border-t border-taawa-bg3 hover:bg-taawa-bg transition-colors">
                             <td className="px-4 py-3 font-medium text-taawa-text">{s.email}</td>
-                            <td className="px-4 py-3 text-taawa-muted">{s.name || "—"}</td>
+                            <td className="px-4 py-3 text-taawa-muted">{s.name || "Ã¢â‚¬â€"}</td>
                             <td className="px-4 py-3 text-taawa-muted">
-                              {new Date(s.subscribed_at).toLocaleDateString()}
+                              {new Date(s.subscribed_at).toLocaleDateString()}  
                             </td>
                             <td className="px-4 py-3">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -371,6 +346,6 @@ export default function AdminDashboard() {
           </>
         )}
       </div>
-    </div>
+    </AdminLayout>
   );
 }

@@ -1,8 +1,10 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { supabaseAdmin } from "./config/supabase.js";
-import bookingsRoutes from "./modules/bookings/bookings.routes.js";
+import { supabaseAdmin } from "./Config/supabase.js";
+import bookingsRoutes from "./Modules/Bookings/bookings.routes.js";
+import messagesRoutes from "./Modules/messages/messages.routes.js";
+import subscribersRoutes from "./Modules/subscribers/subscribers.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -35,6 +37,8 @@ app.get("/api/test-supabase", async (_req, res) => {
 });
 
 app.use("/api/bookings", bookingsRoutes);
+app.use("/api/messages", messagesRoutes);
+app.use("/api/subscribers", subscribersRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

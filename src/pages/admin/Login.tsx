@@ -1,107 +1,105 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
 
-export default function AdminLogin() {
+const AdminLogin = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuthenticated, loading } = useAdminAuth();
+
+  const redirectTo =
+    (location.state as { from?: string } | null)?.from || "/admin/dashboard";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setError("Invalid email or password. Please try again.");
-      setLoading(false);
-      return;
+  useEffect(() => {
+    if (!loading && isAuthenticated) {
+      navigate("/admin/dashboard", { replace: true });
     }
+  }, [loading, isAuthenticated, navigate]);
 
-    navigate("/admin/dashboard");
-    setLoading(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw new Error(error.message || "Failed to sign in");
+      }
+
+      toast.success("Logged in successfully");
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-taawa-bg flex items-center justify-center px-4">
-      <div className="bg-white rounded-[20px] border border-taawa-lime/20 shadow-card p-10 w-full max-w-md">
-
-        {/* Logo */}
-        <div className="flex items-center gap-3 mb-8">
-          <div
-            className="w-8 h-8 bg-taawa-lime flex-shrink-0"
-            style={{ borderRadius: "50% 50% 50% 0", transform: "rotate(-45deg)" }}
-          />
-          <div>
-            <div className="font-syne font-bold text-taawa-green text-lg leading-tight">
-              Taawa CRM
-            </div>
-            <div className="text-taawa-muted text-xs">Admin Dashboard</div>
-          </div>
+    <section className="min-h-screen bg-[#F8F8F4] flex items-center justify-center px-6">
+      <div className="w-full max-w-md rounded-3xl border border-[#e6ece8] bg-white p-8 shadow-sm">
+        <div className="mb-8">
+          <p className="mb-2 inline-flex rounded-full border border-[#d9e3dc] bg-[#f7faf7] px-4 py-1 text-xs font-medium text-[#355847]">
+            Taawa CRM
+          </p>
+          <h1 className="text-3xl font-bold text-[#17252A]">Admin Login</h1>
+          <p className="mt-2 text-sm text-[#5f6f68]">
+            Sign in to access your dashboard.
+          </p>
         </div>
 
-        <h1 className="font-syne font-bold text-taawa-text text-xl mb-1">
-          Welcome back
-        </h1>
-        <p className="text-taawa-muted text-sm mb-8">
-          Sign in to manage bookings and contacts
-        </p>
-
-        <form onSubmit={handleLogin} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="text-xs font-medium text-taawa-muted uppercase tracking-wide mb-1.5 block">
+            <label className="mb-2 block text-sm font-medium text-[#355847]">
               Email
             </label>
             <input
               type="email"
-              placeholder="admin@taawa.com"
+              className="w-full rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
               required
-              className="w-full bg-taawa-bg2 border border-taawa-lime/20 rounded-full px-5 py-3 font-instrument text-sm text-taawa-text outline-none transition-all focus:border-taawa-sage focus:bg-white placeholder:text-taawa-muted/60"
             />
           </div>
 
           <div>
-            <label className="text-xs font-medium text-taawa-muted uppercase tracking-wide mb-1.5 block">
+            <label className="mb-2 block text-sm font-medium text-[#355847]">
               Password
             </label>
             <input
               type="password"
-              placeholder="••••••••"
+              className="w-full rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password"
               required
-              className="w-full bg-taawa-bg2 border border-taawa-lime/20 rounded-full px-5 py-3 font-instrument text-sm text-taawa-text outline-none transition-all focus:border-taawa-sage focus:bg-white placeholder:text-taawa-muted/60"
             />
           </div>
 
-          {error && (
-            <p className="text-red-500 text-sm bg-red-50 px-4 py-2 rounded-xl">
-              {error}
-            </p>
-          )}
-
           <button
             type="submit"
-            disabled={loading}
-            className="bg-taawa-green text-white font-medium py-3 px-6 rounded-full hover:bg-taawa-sage transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            disabled={submitting}
+            className="w-full rounded-2xl bg-[#d7f36a] px-4 py-3 text-sm font-semibold text-[#17252A] transition hover:opacity-90 disabled:opacity-50"
           >
-            {loading ? "Signing in..." : "Sign In →"}
+            {submitting ? "Signing in..." : "Sign In"}
           </button>
         </form>
-
-        <p className="text-center text-taawa-muted text-xs mt-6">
-          Taawa Counselling · Admin Portal
-        </p>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default AdminLogin;

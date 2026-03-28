@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { supabaseAdmin } from "../../config/supabase.js";
+import { supabaseAdmin } from "../../Config/supabase.js";
 
 export async function getBookings(req: Request, res: Response) {
   const { date } = req.query;
@@ -94,6 +94,38 @@ if (existingBooking) {
 
   return res.status(201).json({
     message: "Booking created successfully",
+    booking: data,
+  });
+}
+
+export async function updateBookingStatus(req: Request, res: Response) {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  const allowedStatuses = ["pending", "confirmed", "cancelled", "completed"];
+
+  if (!status || !allowedStatuses.includes(status)) {
+    return res.status(400).json({
+      message: "Invalid booking status",
+    });
+  }
+
+  const { data, error } = await supabaseAdmin
+    .from("bookings")
+    .update({ status })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    return res.status(500).json({
+      message: "Failed to update booking status",
+      error: error.message,
+    });
+  }
+
+  return res.json({
+    message: "Booking status updated successfully",
     booking: data,
   });
 }

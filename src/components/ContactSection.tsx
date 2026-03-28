@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -21,60 +20,56 @@ export default function ContactSection() {
     e.preventDefault();
     setLoading(true);
 
-    const { error: dbError } = await supabase.from("bookings").insert({
-      full_name: `${form.first_name} ${form.last_name}`,
-      email: form.email,
-      phone: form.phone,
-      message: form.message,
-      service_type: "contact_inquiry",
-      session_date: new Date().toISOString().split("T")[0],
-      session_time: new Date().toLocaleTimeString(),
-    });
-
-    if (dbError) {
-      console.error("Booking Error:", dbError);
-      toast.error("Something went wrong. Please try again.");
-      setLoading(false);
-      return;
-    }
-
     try {
-      await fetch("https://api.resend.com/emails", {
+      const response = await fetch("http://localhost:5000/api/messages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: "onboarding@resend.dev",
-          to: "kariukifrancis743@gmail.com",
-          subject: `📩 New Contact — ${form.first_name} ${form.last_name}`,
-          html: `
-            <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-              <div style="background:#1c3028;padding:24px;border-radius:12px 12px 0 0;">
-                <h2 style="color:#7aaa88;margin:0;">New Contact Submission</h2>
-                <p style="color:rgba(255,255,255,0.6);margin:4px 0 0;font-size:13px;">Taawa Counselling</p>
-              </div>
-              <div style="background:#f4f6f4;padding:24px;border-radius:0 0 12px 12px;border:1px solid #dce8de;">
-                <p><strong>Name:</strong> ${form.first_name} ${form.last_name}</p>
-                <p><strong>Email:</strong> <a href="mailto:${form.email}">${form.email}</a></p>
-                <p><strong>Phone:</strong> ${form.phone || "Not provided"}</p>
-                <p><strong>Message:</strong><br/>${form.message}</p>
-                <a href="mailto:${form.email}" 
-                   style="display:inline-block;margin-top:16px;background:#1c3028;color:#7aaa88;padding:10px 20px;border-radius:100px;text-decoration:none;font-size:13px;">
-                  Reply to ${form.first_name} →
-                </a>
-              </div>
-            </div>
-          `,
+          full_name: `${form.first_name} ${form.last_name}`,
+          email: form.email,
+          phone: form.phone || null,
+          subject: "Contact Inquiry",
+          message: form.message,
         }),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message");
+      }
+
+      // ✅ Optional email notification (keep your current logic)
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: "onboarding@resend.dev",
+            to: "kariukifrancis743@gmail.com",
+            subject: `📩 New Contact — ${form.first_name} ${form.last_name}`,
+            html: `
+              <div style="font-family:sans-serif">
+                <h2>New Contact Submission</h2>
+                <p><strong>Name:</strong> ${form.first_name} ${form.last_name}</p>
+                <p><strong>Email:</strong> ${form.email}</p>
+                <p><strong>Phone:</strong> ${form.phone || "Not provided"}</p>
+                <p><strong>Message:</strong><br/>${form.message}</p>
+              </div>
+            `,
+          }),
+        });
+      } catch (emailError) {
+        console.error("Email notification failed:", emailError);
+      }
+
       toast.success("Message sent! We'll be in touch within 24 hours.");
-    } catch (emailError) {
-      console.error("Email notification failed:", emailError);
-      toast.error("Failed to send email notification.");
-    } finally {
-      setLoading(false);
+
       setForm({
         first_name: "",
         last_name: "",
@@ -82,6 +77,18 @@ export default function ContactSection() {
         phone: "",
         message: "",
       });
+
+    } catch (err) {
+      console.error("Message Error:", err);
+
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
+
+      toast.error(message);
+    } finally {
+      setLoading(false);
     }
   };
 
