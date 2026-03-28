@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { supabaseAdmin } from "../../config/supabase.js";
+import { supabaseAdmin } from "../../Config/supabase.js";
 
 export async function getSubscribers(_req: Request, res: Response) {
   const { data, error } = await supabaseAdmin
