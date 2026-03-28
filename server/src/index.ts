@@ -2,9 +2,9 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { supabaseAdmin } from "./Config/supabase.js";
-import bookingsRoutes from "./Modules/Bookings/bookings.routes.js";
+import bookingsRoutes from "./Modules/bookings/bookings.routes.js";
 import messagesRoutes from "./Modules/messages/messages.routes.js";
-import subscribersRoutes from "./Modules/subscribers/subscribers.routes.js";
+import subscribersRoutes from "./modules/subscribers/subscribers.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
