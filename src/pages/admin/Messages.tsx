@@ -14,7 +14,7 @@ type Message = {
   created_at: string;
 };
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const statusClasses: Record<Message["status"], string> = {
   unread: "bg-yellow-100 text-yellow-800 border-yellow-200",

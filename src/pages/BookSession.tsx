@@ -1,4 +1,5 @@
 ﻿import { useState, useEffect } from "react";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -95,7 +96,7 @@ const BookSession = () => {
         const formattedDate = format(selectedDate, "yyyy-MM-dd");
 
         const res = await fetch(
-          `http://localhost:5000/api/bookings?date=${formattedDate}`
+          `${API_BASE_URL}/api/bookings?date=${formattedDate}`
         );
 
         const data = await res.json();
@@ -148,7 +149,7 @@ const BookSession = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
+      const response = await fetch(`${API_BASE_URL}/api/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

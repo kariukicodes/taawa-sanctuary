@@ -9,7 +9,7 @@ type Subscriber = {
   created_at: string;
 };
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const statusClasses: Record<Subscriber["status"], string> = {
   active: "bg-green-100 text-green-800 border-green-200",
