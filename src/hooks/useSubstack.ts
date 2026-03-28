@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 
 export type SubstackPost = {
   title: string;
@@ -27,7 +27,7 @@ export function useSubstack() {
 
         if (data.status !== "ok") throw new Error("Feed error");
 
-        const parsed: SubstackPost[] = data.items.map((item: any) => ({
+        const parsed: SubstackPost[] = data.items.map((item: Record<string, unknown>) => ({
           title: item.title,
           link: item.link,
           pubDate: item.pubDate,

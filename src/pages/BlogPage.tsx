@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import Navbar from "@/components/Navbar";
@@ -25,7 +25,7 @@ export default function BlogPost() {
 
         if (data.status !== "ok") throw new Error("Feed error");
 
-        const allPosts: SubstackPost[] = data.items.map((item: any) => ({
+        const allPosts: SubstackPost[] = data.items.map((item: Record<string, unknown>) => ({
           title: item.title,
           link: item.link,
           pubDate: item.pubDate,

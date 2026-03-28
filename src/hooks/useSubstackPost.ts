@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { SubstackPost } from "./useSubstack";
 
 export const useSubstackPost = (slug: string) => {
@@ -22,7 +22,7 @@ export const useSubstackPost = (slug: string) => {
 
         if (data.status !== "ok") throw new Error("Feed error");
 
-        const foundItem = data.items.find((item: any) => {
+        const foundItem = data.items.find((item: Record<string, unknown>) => {
           const itemSlug = item.link.split('/').pop()?.split('?')[0] || item.guid;
           return itemSlug === slug;
         });
@@ -45,7 +45,7 @@ export const useSubstackPost = (slug: string) => {
         };
 
         setPost(formattedPost);
-      } catch (err: any) {
+      } catch (err: unknown) {
         setError("Could not load article.");
       } finally {
         setLoading(false);

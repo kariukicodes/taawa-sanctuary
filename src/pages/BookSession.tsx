@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -100,7 +100,7 @@ const BookSession = () => {
 
         const data = await res.json();
 
-        const times = data.map((b: any) => b.session_time);
+        const times = data.map((b: Record<string, unknown>) => b.session_time);
 
         setBookedSlots(times);
       } catch (err) {
