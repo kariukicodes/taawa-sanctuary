@@ -100,6 +100,61 @@ const AdminBookings = () => {
     }
   };
 
+  // Export Bookings to CSV
+  const exportBookingsToCSV = () => {
+    if (filteredBookings.length === 0) {
+      toast.error("No bookings to export.");
+      return;
+    }
+
+    const headers = [
+      "Full Name",
+      "Email",
+      "Phone",
+      "Service",
+      "Session Date",
+      "Session Time",
+      "Status",
+      "Message",
+      "Created At",
+    ];
+
+    const rows = filteredBookings.map((booking) => [
+      booking.full_name,
+      booking.email,
+      booking.phone || "",
+      booking.service_type,
+      booking.session_date,
+      booking.session_time,
+      booking.status,
+      booking.message || "",
+      booking.created_at,
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) =>
+        row
+          .map((value) => `"${String(value).replace(/"/g, '""')}"`)
+          .join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "bookings.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    toast.success("Bookings exported successfully.");
+  };
+
   const filteredBookings = bookings.filter((booking) => {
     const matchesSearch =
       booking.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -117,25 +172,34 @@ const AdminBookings = () => {
     >
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <input
-            type="text"
-            placeholder="Search by name, email, or service..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full md:max-w-md rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
-          />
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <input
+              type="text"
+              placeholder="Search by name, email, or service..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full md:w-[320px] rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            />
 
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            >
+              <option value="all">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <button
+            onClick={exportBookingsToCSV}
+            className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm font-semibold text-[#355847] transition hover:bg-[#f3f6f3]"
           >
-            <option value="all">All statuses</option>
-            <option value="pending">Pending</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="cancelled">Cancelled</option>
-            <option value="completed">Completed</option>
-          </select>
+            Export CSV
+          </button>
         </div>
 
         {loading && (

@@ -55,20 +55,66 @@ const AdminSubscribers = () => {
     );
   }, [subscribers, searchTerm]);
 
+  // Export Subscribers to CSV
+  const exportSubscribersToCSV = () => {
+    if (filteredSubscribers.length === 0) {
+      toast.error("No subscribers to export.");
+      return;
+    }
+
+    const headers = ["Email", "Status", "Created At"];
+
+    const rows = filteredSubscribers.map((subscriber) => [
+      subscriber.email,
+      subscriber.status,
+      subscriber.created_at,
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) =>
+        row
+          .map((value) => `"${String(value).replace(/"/g, '""')}"`)
+          .join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "subscribers.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    toast.success("Subscribers exported successfully.");
+  };
+
   return (
     <AdminLayout
       title="Newsletter Subscribers"
       description="View and manage newsletter signups."
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-6">
+        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <input
             type="text"
             placeholder="Search by email..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full md:max-w-md rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            className="w-full md:w-[320px] rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
           />
+
+          <button
+            onClick={exportSubscribersToCSV}
+            className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm font-semibold text-[#355847] transition hover:bg-[#f3f6f3]"
+          >
+            Export CSV
+          </button>
         </div>
 
         {loading && (

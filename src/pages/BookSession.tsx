@@ -171,36 +171,6 @@ const BookSession = () => {
         throw new Error(data.message || "Failed to create booking");
       }
 
-      // Optional email notification
-      try {
-        await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
-          },
-          body: JSON.stringify({
-            from: "onboarding@resend.dev",
-            to: "kariukifrancis743@gmail.com",
-            subject: `📅 New Booking — ${result.data.fullName}`,
-            html: `
-              <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-                <h2>New Booking Received</h2>
-                <p><strong>Name:</strong> ${result.data.fullName}</p>
-                <p><strong>Email:</strong> ${result.data.email}</p>
-                <p><strong>Phone:</strong> ${result.data.phone || "Not provided"}</p>
-                <p><strong>Service:</strong> ${selectedService}</p>
-                <p><strong>Date:</strong> ${format(selectedDate, "PPP")}</p>
-                <p><strong>Time:</strong> ${selectedTime}</p>
-                <p><strong>Message:</strong> ${result.data.message || "No message"}</p>
-              </div>
-            `,
-          }),
-        });
-      } catch (emailError) {
-        console.error("Email notification failed:", emailError);
-      }
-
       toast.success("Booking confirmed successfully!");
       setStep(5);
     } catch (err) {

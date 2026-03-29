@@ -96,6 +96,57 @@ const AdminMessages = () => {
     }
   };
 
+  // Export Messages to CSV
+  const exportMessagesToCSV = () => {
+    if (filteredMessages.length === 0) {
+      toast.error("No messages to export.");
+      return;
+    }
+
+    const headers = [
+      "Full Name",
+      "Email",
+      "Phone",
+      "Subject",
+      "Message",
+      "Status",
+      "Created At",
+    ];
+
+    const rows = filteredMessages.map((msg) => [
+      msg.full_name,
+      msg.email,
+      msg.phone || "",
+      msg.subject,
+      msg.message || "",
+      msg.status,
+      msg.created_at,
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) =>
+        row
+          .map((value) => `"${String(value).replace(/"/g, '""')}"`)
+          .join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "messages.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    toast.success("Messages exported successfully.");
+  };
+
   useEffect(() => {
     fetchMessages();
   }, []);
@@ -121,24 +172,33 @@ const AdminMessages = () => {
     >
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <input
-            type="text"
-            placeholder="Search by name, email, or subject..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full md:max-w-md rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
-          />
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <input
+              type="text"
+              placeholder="Search by name, email, or subject..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full md:w-[320px] rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            />
 
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm text-[#17252A] outline-none focus:border-[#355847]"
+            >
+              <option value="all">All statuses</option>
+              <option value="unread">Unread</option>
+              <option value="read">Read</option>
+              <option value="replied">Replied</option>
+            </select>
+          </div>
+
+          <button
+            onClick={exportMessagesToCSV}
+            className="rounded-2xl border border-[#d9e3dc] bg-white px-4 py-3 text-sm font-semibold text-[#355847] transition hover:bg-[#f3f6f3]"
           >
-            <option value="all">All statuses</option>
-            <option value="unread">Unread</option>
-            <option value="read">Read</option>
-            <option value="replied">Replied</option>
-          </select>
+            Export CSV
+          </button>
         </div>
 
         {loading && (

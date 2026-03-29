@@ -11,6 +11,8 @@ const AdminLogin = lazy(() => import("./pages/admin/Login.tsx"));
 const AdminDashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
 const AdminBookings = lazy(() => import("./pages/admin/Bookings.tsx"));
 const AdminMessages = lazy(() => import("./pages/admin/Messages.tsx"));
+
+const AdminCalendar = lazy(() => import("./pages/admin/Calendar.tsx"));
 const AdminSubscribers = lazy(() => import("./pages/admin/Subscribers.tsx"));
 
 const Index = lazy(() => import("./pages/Index.tsx"));
@@ -66,11 +68,21 @@ const App = () => (
                 }
               />
 
+
               <Route
                 path="/admin/subscribers"
                 element={
                   <ProtectedAdminRoute>
                     <AdminSubscribers />
+                  </ProtectedAdminRoute>
+                }
+              />
+
+              <Route
+                path="/admin/calendar"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminCalendar />
                   </ProtectedAdminRoute>
                 }
               />

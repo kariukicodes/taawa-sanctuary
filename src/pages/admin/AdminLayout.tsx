@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 type AdminLayoutProps = {
   title: string;
@@ -12,6 +12,7 @@ const navItems = [
   { label: "Bookings", path: "/admin/bookings" },
   { label: "Messages", path: "/admin/messages" },
   { label: "Subscribers", path: "/admin/subscribers" },
+  { label: "Calendar", path: "/admin/calendar" },
 ];
 
 const AdminLayout = ({
@@ -19,6 +20,8 @@ const AdminLayout = ({
   description,
   children,
 }: AdminLayoutProps) => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-[#F8F8F4]">
       <div className="mx-auto flex min-h-screen max-w-[1600px]">
@@ -50,6 +53,17 @@ const AdminLayout = ({
               </NavLink>
             ))}
           </nav>
+
+          <div className="mt-10 border-t border-[#e6ece8] pt-6">
+            <button
+              onClick={async () => {
+                navigate("/admin/login", { replace: true });
+              }}
+              className="w-full rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-600 transition hover:opacity-90"
+            >
+              Log out
+            </button>
+          </div>
         </aside>
 
         <main className="flex-1 px-6 py-8 md:px-8 lg:px-10">

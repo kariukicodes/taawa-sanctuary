@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { supabaseAdmin } from "../../Config/supabase.js";
+import { getResend } from "../../config/resend.js";
 
 export async function getBookings(req: Request, res: Response) {
   const { date } = req.query;
@@ -90,6 +91,51 @@ if (existingBooking) {
       message: "Failed to create booking",
       error: error.message,
     });
+  }
+
+  const resend = getResend();
+  if (resend) {
+    try {
+      await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Your Taawa counselling session booking is confirmed",
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h2>Booking Confirmed</h2>
+            <p>Hi ${full_name},</p>
+            <p>Your session has been booked successfully.</p>
+            <p><strong>Service:</strong> ${service_type}</p>
+            <p><strong>Date:</strong> ${session_date}</p>
+            <p><strong>Time:</strong> ${session_time}</p>
+            <p>We look forward to supporting you.</p>
+            <p>— Taawa Counselling</p>
+          </div>
+        `,
+      });
+
+      await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: "kariukifrancis743@gmail.com",
+        subject: `📅 New Booking — ${full_name}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h2>New Booking Received</h2>
+            <p><strong>Name:</strong> ${full_name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+            <p><strong>Service:</strong> ${service_type}</p>
+            <p><strong>Date:</strong> ${session_date}</p>
+            <p><strong>Time:</strong> ${session_time}</p>
+            <p><strong>Message:</strong> ${message || "No message"}</p>
+          </div>
+        `,
+      });
+    } catch (emailError) {
+      console.error("Booking email failed:", emailError);
+    }
+  } else {
+    console.warn("Skipping booking emails because RESEND_API_KEY is missing");
   }
 
   return res.status(201).json({
