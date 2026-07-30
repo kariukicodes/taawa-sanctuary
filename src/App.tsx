@@ -21,6 +21,9 @@ const Blog = lazy(() => import("./pages/Blog.tsx"));
 const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
 const BookSession = lazy(() => import("./pages/BookSession.tsx"));
 const Services = lazy(() => import("./pages/Services.tsx"));
+const Privacy = lazy(() => import("./pages/Privacy.tsx"));
+const Confidentiality = lazy(() => import("./pages/Confidentiality.tsx"));
+const Crisis = lazy(() => import("./pages/Crisis.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,9 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/book-session" element={<BookSession />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/confidentiality" element={<Confidentiality />} />
+              <Route path="/crisis-support" element={<Crisis />} />
 
               <Route path="/admin/login" element={<AdminLogin />} />
 
@@ -67,7 +73,6 @@ const App = () => (
                   </ProtectedAdminRoute>
                 }
               />
-
 
               <Route
                 path="/admin/subscribers"

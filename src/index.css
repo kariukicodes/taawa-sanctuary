@@ -72,6 +72,22 @@ html, body {
   .scroll-reveal-right.revealed {
     animation: reveal-right 0.7s ease forwards;
   }
+
+  /* Visible focus states for keyboard navigation */
+  *:focus-visible {
+    outline: 3px solid #d4e84a;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 html {

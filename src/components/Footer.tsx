@@ -1,7 +1,17 @@
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 
-const footerLinks = ["Home", "About Us", "Services", "Programs", "Blogs", "Contact Us"];
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/#about-us" },
+  { label: "Services", href: "/services" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Blogs", href: "/blog" },
+  { label: "Contact Us", href: "/#contact-us" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Confidentiality", href: "/confidentiality" },
+  { label: "Crisis Support", href: "/crisis-support" },
+];
 const socials = ["𝕏", "in", "f", "📷"];
 
 const Footer = () => (
@@ -34,13 +44,13 @@ const Footer = () => (
         </p>
         <div className="flex flex-wrap justify-center gap-6">
           {footerLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
+            <Link
+              key={link.label}
+              to={link.href}
               className="text-white/65 font-instrument text-[0.82rem] hover:text-taawa-lime transition-colors duration-200"
             >
-              {link}
-            </a>
+              {link.label}
+            </Link>
           ))}
         </div>
         <Link
