@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import GridFrame from "@/components/GridFrame";
 import OurStorySection from "@/components/OurStorySection";
 import ServicesSection from "@/components/ServicesSection";
 import ProgramsSection from "@/components/ProgramsSection";
@@ -13,7 +14,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => (
-  <>
+  <GridFrame>
     <Navbar />
     <HeroSection />
     <OurStorySection />
@@ -27,7 +28,7 @@ const Index = () => (
     <ContactSection />
     <FinalCtaSection />
     <Footer />
-  </>
+  </GridFrame>
 );
 
 export default Index;

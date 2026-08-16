@@ -18,14 +18,14 @@ const FinalCtaSection = () => {
             alt="Taawa leaf icon" 
             className="w-24 h-24 object-contain mb-8"
           />
-          <h2 className="font-syne font-extrabold text-white max-w-[700px] mx-auto leading-tight mb-8" style={{ fontSize: "clamp(1.4rem, 2vw, 2rem)" }}>
+          <h2 className="font-syne font-extrabold text-white max-w-[700px] mx-auto leading-tight mb-8" style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.8rem)" }}>
             Begin your personalized path to{" "}
             <em className="text-taawa-lime" style={{ fontStyle: "italic" }}>emotional clarity</em>{" "}
             and mental balance today.
           </h2>
           <a
             href="#contact"
-            className="inline-flex bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-8 py-3 outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
+            className="inline-flex bg-taawa-lime text-taawa-green font-instrument font-bold rounded-xl px-8 py-3 text-[0.88rem] outline-none hover:-translate-y-1 hover:shadow-lg hover:shadow-taawa-lime/40 active:scale-[0.98] transition-all duration-300"
           >
             Book Your First Session →
           </a>

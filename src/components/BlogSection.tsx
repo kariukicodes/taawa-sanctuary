@@ -14,11 +14,11 @@ export default function BlogSection() {
         </div>
         <h2
           className="font-syne font-bold text-taawa-text leading-tight"
-          style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}
+          style={{ fontSize: "clamp(1.45rem, 2.4vw, 2rem)" }}
         >
           Weekly Insights for Emotional Wellbeing
         </h2>
-        <p className="text-taawa-muted text-sm mt-4 max-w-xl mx-auto leading-relaxed">
+        <p className="text-taawa-muted text-[0.88rem] mt-4 max-w-xl mx-auto leading-relaxed">
           Practical guidance on stress management, relationships, and mental
           resilience — written with empathy and backed by expert knowledge.
         </p>
@@ -87,10 +87,10 @@ export default function BlogSection() {
                     ? format(new Date(post.pubDate), "dd MMMM, yyyy")
                     : ""}
                 </p>
-                <h3 className="font-syne font-bold text-taawa-text text-[1rem] leading-snug mb-2 group-hover:text-taawa-sage transition-colors">
+                <h3 className="font-syne font-bold text-taawa-text text-[0.95rem] leading-snug mb-2 group-hover:text-taawa-sage transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-taawa-muted text-xs leading-relaxed line-clamp-3">
+                <p className="text-taawa-muted text-[0.78rem] leading-relaxed line-clamp-3">
                   {post.excerpt}
                 </p>
                 <span className="text-taawa-sage text-xs font-medium mt-3 block">

@@ -29,7 +29,7 @@ const HeroSection = () => {
 
         <h1
           className=" font-syne font-extrabold text-white leading-[1.05] sm:leading-[1.02] tracking-tight mb-5 sm:mb-6 max-w-none"
-          style={{ fontSize: "clamp(2.5rem, 9vw, 4.5rem)" }}
+          style={{ fontSize: "clamp(2.2rem, 7vw, 4rem)" }}
         >
           Find Your{" "}
           <span className="text-taawa-lime/90 font-bold">
@@ -39,7 +39,7 @@ const HeroSection = () => {
           <br className="hidden sm:block" /> Compassionate Mental Care.
         </h1>
 
-        <p className=" font-instrument font-light text-white/90 max-w-[320px] sm:max-w-[440px] text-[1.05rem] md:text-lg leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
+        <p className=" font-instrument font-light text-white/90 max-w-[320px] sm:max-w-[440px] text-[0.98rem] md:text-[1.05rem] leading-relaxed mb-8 sm:mb-12 min-h-[4.5rem] sm:min-h-[3rem]">
           <Typewriter text="Confidential, professional support to help you heal, grow, and move forward with clarity and strength." />
         </p>
 
@@ -62,10 +62,10 @@ const HeroSection = () => {
 
       <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-[5%] bottom-8 md:bottom-20 hidden md:flex flex-col items-center z-20  w-[85%] max-w-[220px]">
         <div className="flex flex-col items-center justify-center w-full backdrop-blur-md bg-white/10 border border-white/20 p-4 sm:p-5 md:p-6 rounded-xl shadow-2xl">
-          <span className="text-3xl sm:text-4xl md:text-5xl font-syne font-bold text-white mb-1">
+          <span className="text-[2.35rem] sm:text-[2.7rem] md:text-[3rem] font-syne font-bold text-white mb-1">
             98%
           </span>
-          <span className="text-white/80 text-xs md:text-sm font-medium text-center">
+          <span className="text-white/80 text-[0.78rem] md:text-[0.86rem] font-medium text-center">
             client satisfaction
             <br />
             and improvement

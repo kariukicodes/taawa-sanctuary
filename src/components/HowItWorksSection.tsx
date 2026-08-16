@@ -21,11 +21,11 @@ const HowItWorksSection = () => {
             <PillTag>How It Works</PillTag>
           </div>
           
-          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight mb-5" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight mb-5" style={{ fontSize: "clamp(1.55rem, 3vw, 2.35rem)" }}>
             Your Path to Wellness in Four <span className="font-instrument italic font-normal text-taawa-sage">Simple Steps</span>
           </h2>
           
-          <p className="scroll-reveal font-instrument text-taawa-muted max-w-[560px] mx-auto text-[1.05rem] leading-relaxed">
+          <p className="scroll-reveal font-instrument text-taawa-muted max-w-[560px] mx-auto text-[0.98rem] leading-relaxed">
             We've simplified the process so you can focus on what matters most — your healing journey.
           </p>
         </div>
@@ -43,7 +43,7 @@ const HowItWorksSection = () => {
                 data-delay={`${i * 0.1}`}
               >
                 {/* Step Node */}
-                <div className="w-[64px] h-[64px] rounded-full bg-taawa-green flex items-center justify-center text-white text-[1.25rem] font-syne font-medium mb-6 shadow-md transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_15px_30px_rgba(23,37,42,0.15)] relative">
+                <div className="w-[58px] h-[58px] rounded-full bg-taawa-green flex items-center justify-center text-white text-[1.05rem] font-syne font-medium mb-6 shadow-md transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_15px_30px_rgba(23,37,42,0.15)] relative">
                   {s.num}
                   {/* Small connector line for mobile (hidden on desktop) */}
                   {i !== steps.length - 1 && (
@@ -52,10 +52,10 @@ const HowItWorksSection = () => {
                 </div>
 
                 {/* Step Content */}
-                <h3 className="font-syne font-semibold text-taawa-text text-[1.15rem] mb-3">
+                <h3 className="font-syne font-semibold text-taawa-text text-[1rem] mb-3">
                   {s.title}
                 </h3>
-                <p className="font-instrument text-taawa-muted text-[0.95rem] leading-[1.6] max-w-[240px]">
+                <p className="font-instrument text-taawa-muted text-[0.88rem] leading-[1.6] max-w-[240px]">
                   {s.desc}
                 </p>
               </div>

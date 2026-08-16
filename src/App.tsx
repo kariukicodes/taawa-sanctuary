@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
 import ProtectedAdminRoute from "@/components/admin/ProtectedAdminRoute";
+import AIAssistant from "@/components/AIAssistant";
 
 const AdminLogin = lazy(() => import("./pages/admin/Login.tsx"));
 const AdminDashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
@@ -35,6 +36,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Suspense fallback={<div className="min-h-screen bg-[#17252A]" />}>
+            <AIAssistant />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/blog" element={<Blog />} />

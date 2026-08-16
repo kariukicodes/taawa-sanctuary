@@ -53,12 +53,12 @@ const TestimonialsSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 mb-14 max-w-6xl mx-auto">
         <div>
           <div className="scroll-reveal mb-5"><PillTag>Testimonials</PillTag></div>
-          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}>
+          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.45rem, 2.4vw, 2rem)" }}>
             What Our Clients Say About Their Experience
           </h2>
         </div>
         <div className="scroll-reveal flex items-end justify-between gap-4">
-          <p className="font-instrument text-taawa-muted leading-relaxed text-[0.95rem]">
+          <p className="font-instrument text-taawa-muted leading-relaxed text-[0.88rem]">
             Real stories from real people who have transformed their lives through our personalized wellness programs and expert guidance.
           </p>
           <div className="hidden md:flex items-center gap-2 flex-shrink-0">
@@ -102,9 +102,9 @@ const TestimonialsSection = () => {
               <div className="w-[54px] h-[54px] rounded-full border-[3px] border-white shadow-md mb-5 bg-taawa-text text-[#e0e5d6] flex items-center justify-center font-syne font-bold text-lg">
                 {initials}
               </div>
-              <p className="font-syne font-semibold text-taawa-text text-[1.05rem] leading-snug mb-3">"{t.quote}"</p>
-              <p className="font-instrument text-taawa-muted text-[0.82rem] leading-relaxed mb-4">{t.body}</p>
-              <span className="font-syne font-semibold text-taawa-text text-[0.85rem]">{t.name}</span>
+              <p className="font-syne font-semibold text-taawa-text text-[0.98rem] leading-snug mb-3">"{t.quote}"</p>
+              <p className="font-instrument text-taawa-muted text-[0.78rem] leading-relaxed mb-4">{t.body}</p>
+              <span className="font-syne font-semibold text-taawa-text text-[0.8rem]">{t.name}</span>
             </div>
           );
         })}

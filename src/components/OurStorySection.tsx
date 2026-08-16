@@ -46,14 +46,14 @@ const OurStorySection = () => {
           <div className="scroll-reveal-left flex flex-col items-start justify-center">
             <PillTag className="mb-6">About Taawa</PillTag>
 
-            <h2 className="font-syne font-bold text-taawa-text leading-[1.12] mb-6" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            <h2 className="font-syne font-bold text-taawa-text leading-[1.12] mb-6" style={{ fontSize: "clamp(1.6rem, 3.1vw, 2.4rem)" }}>
               A New Light for Your Mental <span className="font-instrument italic font-normal text-[#2a382f]">Wellbeing</span>
             </h2>
 
-            <p className="font-instrument text-taawa-muted text-[1.05rem] leading-relaxed mb-6 max-w-[540px]">
+            <p className="font-instrument text-taawa-muted text-[0.98rem] leading-relaxed mb-6 max-w-[540px]">
               Taawa is devoted to guiding people toward calmer, more fulfilling lives. Our certified therapists provide, evidence-based care designed to help you grow.
             </p>
-            <p className="font-instrument text-taawa-muted text-[1.05rem] leading-relaxed max-w-[540px]">
+            <p className="font-instrument text-taawa-muted text-[0.98rem] leading-relaxed max-w-[540px]">
               We combine clinical expertise with compassionate care to help you take control of your mental health. <strong className="font-semibold text-taawa-text">All sessions use an Eclectic & Integrative approach — tailored specifically to you.</strong> Whether managing stress, navigating anxiety, or simply improving daily wellbeing — we're here every step of the way.
             </p>
           </div>
@@ -82,10 +82,10 @@ const OurStorySection = () => {
               }`}
             >
               <div className="flex items-center gap-4 mb-3">
-                <span className="font-syne font-bold text-taawa-text text-4xl">{s.num}</span>
-                <span className="font-instrument font-semibold text-taawa-text text-[1.1rem] leading-tight">{s.label}</span>
+                <span className="font-syne font-bold text-taawa-text text-[2.6rem]">{s.num}</span>
+                <span className="font-instrument font-semibold text-taawa-text text-[0.98rem] leading-tight">{s.label}</span>
               </div>
-              <span className="font-instrument text-taawa-muted text-[0.95rem] leading-[1.5]">{s.desc}</span>
+              <span className="font-instrument text-taawa-muted text-[0.88rem] leading-[1.5]">{s.desc}</span>
             </div>
           ))}
           {/* Progress Indicators */}
@@ -108,9 +108,9 @@ const OurStorySection = () => {
               key={i} 
               className="flex flex-col p-5 md:p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-taawa-green/30 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:border-taawa-green hover:shadow-[0_15px_40px_rgba(33,59,49,0.12)] transition-all duration-500"
             >
-              <span className="font-syne font-bold text-taawa-text text-3xl mb-2">{s.num}</span>
-              <span className="font-instrument font-semibold text-taawa-text text-[0.95rem] mb-1.5">{s.label}</span>
-              <span className="font-instrument text-taawa-muted text-[0.85rem] leading-[1.5]">{s.desc}</span>
+              <span className="font-syne font-bold text-taawa-text text-[2.3rem] mb-2">{s.num}</span>
+              <span className="font-instrument font-semibold text-taawa-text text-[0.92rem] mb-1.5">{s.label}</span>
+              <span className="font-instrument text-taawa-muted text-[0.82rem] leading-[1.5]">{s.desc}</span>
             </div>
           ))}
         </div>

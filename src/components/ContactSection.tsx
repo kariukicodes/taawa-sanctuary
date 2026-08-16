@@ -106,10 +106,10 @@ export default function ContactSection() {
           {/* Left Content */}
           <div>
             <PillTag>Contact Us</PillTag>
-            <h2 className="font-syne font-bold text-3xl md:text-4xl text-foreground mt-6 mb-6">
+            <h2 className="font-syne font-bold text-[2rem] md:text-[2.55rem] text-foreground mt-6 mb-6">
               Get Connected With Our Team for Personalized Wellness Support
             </h2>
-            <p className="text-muted-foreground text-base leading-relaxed">
+            <p className="text-muted-foreground text-[0.92rem] leading-relaxed">
               We're here to help you take the next step in your wellness journey. Contact us for consultations, questions, or guidance. Our support team and professionals are available to ensure you feel heard, valued, and supported.
             </p>
           </div>

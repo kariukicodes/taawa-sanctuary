@@ -20,12 +20,12 @@ const ProgramsSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 mb-14 max-w-6xl mx-auto relative z-10">
         <div>
           <div className="scroll-reveal mb-5"><PillTag>Our Programs</PillTag></div>
-          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)" }}>
+          <h2 className="scroll-reveal font-syne font-bold text-taawa-text leading-tight" style={{ fontSize: "clamp(1.45rem, 2.8vw, 2rem)" }}>
             Structured Programs Tailored To Your Growth Journey
           </h2>
         </div>
         <div className="scroll-reveal flex items-end">
-          <p className="font-instrument text-taawa-muted leading-relaxed text-[0.95rem]">
+          <p className="font-instrument text-taawa-muted leading-relaxed text-[0.88rem]">
             Each program is designed by certified professionals to address specific mental health needs, combining proven methodologies with personalized care.
           </p>
         </div>
@@ -41,8 +41,8 @@ const ProgramsSection = () => {
             <div className="w-[44px] h-[44px] rounded-[10px] bg-taawa-lime/20 flex items-center justify-center text-[1.25rem] mb-10">
               {p.icon}
             </div>
-            <h4 className="font-syne font-bold text-taawa-text text-[1rem] mb-3">{p.title}</h4>
-            <p className="font-instrument text-taawa-muted text-[0.85rem] leading-relaxed">{p.desc}</p>
+            <h4 className="font-syne font-bold text-taawa-text text-[0.95rem] mb-3">{p.title}</h4>
+            <p className="font-instrument text-taawa-muted text-[0.8rem] leading-relaxed">{p.desc}</p>
           </div>
         ))}
       </div>

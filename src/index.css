@@ -41,6 +41,7 @@
   }
 html, body {
   @apply bg-taawa-bg text-taawa-text font-instrument;
+  font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

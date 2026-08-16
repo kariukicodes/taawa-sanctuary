@@ -124,7 +124,7 @@ export default function ServicesSection() {
         <h2
           className="font-syne font-bold text-taawa-text"
           style={{
-            fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+            fontSize: "clamp(1.6rem, 3.1vw, 2.35rem)",
             letterSpacing: "-0.025em",
             lineHeight: "1.12",
           }}
@@ -139,7 +139,7 @@ export default function ServicesSection() {
           <button
             key={c.id}
             onClick={() => setActive(i)}
-            className={`font-instrument flex-shrink-0 snap-start sm:snap-center flex items-center justify-center sm:inline-block px-5 py-2.5 rounded-full text-[0.95rem] sm:text-sm font-medium transition-all border ${
+            className={`font-instrument flex-shrink-0 snap-start sm:snap-center flex items-center justify-center sm:inline-block px-5 py-2.5 rounded-full text-[0.9rem] sm:text-[0.95rem] font-medium transition-all border ${
               active === i
                 ? "bg-taawa-text text-white border-taawa-text shadow-sm"
                 : "bg-white text-taawa-muted border-taawa-lime/20 hover:border-taawa-lime hover:text-taawa-text hover:bg-taawa-lime/5"
@@ -190,13 +190,13 @@ export default function ServicesSection() {
 
             {/* Quote card */}
             <div className="bg-white/10 border border-white/15 rounded-[16px] p-5">
-              <p className="font-instrument font-medium text-white text-[1rem] leading-snug mb-3 italic">
+              <p className="font-instrument font-medium text-white text-[0.92rem] leading-snug mb-3 italic">
                 "{cat.quote}"
               </p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div
-                    className="font-instrument w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                    className="font-instrument w-7 h-7 rounded-full flex items-center justify-center text-[0.7rem] font-bold flex-shrink-0"
                     style={{ background: cat.accent, color: cat.bg }}
                   >
                     {cat.initials}
@@ -233,20 +233,20 @@ export default function ServicesSection() {
             >
               {cat.headline}
             </h3>
-            <p className="font-instrument text-white/65 text-sm leading-relaxed max-w-sm">
+            <p className="font-instrument text-white/65 text-[0.88rem] leading-relaxed max-w-sm">
               {cat.desc}
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => navigate("/services")}
-                className="font-semibold py-3 px-7 rounded-full text-sm transition-all hover:-translate-y-0.5 font-instrument"
+                className="font-semibold py-3 px-7 rounded-full text-[0.88rem] transition-all hover:-translate-y-0.5 font-instrument"
                 style={{ background: cat.accent, color: cat.bg }}
               >
                 Explore More →
               </button>
               <button
                 onClick={() => navigate("/book-session")}
-                className="font-medium py-3 px-7 rounded-full text-sm border border-white/25 text-white hover:bg-white/10 transition-all font-instrument"
+                className="font-medium py-3 px-7 rounded-full text-[0.88rem] border border-white/25 text-white hover:bg-white/10 transition-all font-instrument"
               >
                 Book Session
               </button>
